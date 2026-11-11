@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Step 6 - Add intro screen and final touches</title>
+
+    <link rel="stylesheet" type="text/css" href="css/step6.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
+
+  </head>
+  <body>
+
+    <main>
+      <div class="score hide">0</div>
+
+      <section class="intro fade-in">
+       <h1>
+          Guess the flag
+      </h1>
+       <p class="guess">🌍</p>
+      <p>How many can you recognize?</p>
+      <button class="replay">Start</button>
+       <a class="home-button" href="../index.html">Về trang chủ</a>
+       </section>
+
+      <section class="play hide">
+         <div class="flag-display">
+           <img class="flag-image" alt="">
+           <span class="flag-fallback hide" aria-hidden="true"></span>
+         </div>
+         <div class="suggestions">
+          <div class="answer-option">
+            <button>One</button>
+            <span class="option-feedback hide" aria-live="polite"><img alt=""><span></span></span>
+          </div>
+          <div class="answer-option">
+            <button>Two</button>
+            <span class="option-feedback hide" aria-live="polite"><img alt=""><span></span></span>
+          </div>
+          <div class="answer-option">
+            <button>Three</button>
+            <span class="option-feedback hide" aria-live="polite"><img alt=""><span></span></span>
+          </div>
+          <div class="answer-option">
+            <button>Four</button>
+            <span class="option-feedback hide" aria-live="polite"><img alt=""><span></span></span>
+          </div>
+          <div class="answer-option">
+            <button>Five</button>
+            <span class="option-feedback hide" aria-live="polite"><img alt=""><span></span></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="gameover hide">
+       <h2>Kết thúc trò chơi</h2>
+        <p>Kết quả của bạn:
+          <span class="result">
+          </span>
+        </p>
+        <div class="xp-summary">
+          <p class="xp-earned"></p>
+          <p class="xp-progress-label"></p>
+          <div class="xp-progress" role="progressbar" aria-label="Tiến độ kinh nghiệm" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="xp-progress-fill"></div>
+          </div>
+          <p class="xp-level"></p>
+        </div>
+        <button class="replay">Play again</button>
+        <a class="home-button" href="../index.html">Về trang chủ</a>
+      </section>
+    </main>
+
+  <script type="module" src="js/step6.js"></script>
+  </body>
+</html>

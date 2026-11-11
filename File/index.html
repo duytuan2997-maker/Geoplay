@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Địa Lý THPT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <script src="lesson-content.js"></script>
+    <script src="script.js"></script>
+    <header class="home-header">
+        <div class="account-toolbar">
+            <button id="account-open" class="account-open" type="button">Đăng nhập / Tạo tài khoản</button>
+            <div id="account-profile" class="account-profile" hidden>
+                <div class="account-profile-top">
+                    <div class="account-identity">
+                        <strong id="account-status" aria-live="polite">Đang tải...</strong>
+                        <div class="account-exp-row">
+                            <span>EXP</span>
+                            <strong id="account-exp">0 / 100</strong>
+                        </div>
+                        <div class="account-exp-bar" role="progressbar" aria-label="Kinh nghiệm" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <span id="account-exp-fill"></span>
+                        </div>
+                        <div class="account-currency">
+                            <span aria-hidden="true">🪙</span>
+                            <span>Xu Địa</span>
+                            <strong id="account-coins">0</strong>
+                        </div>
+                    </div>
+                    <button id="account-avatar" class="account-avatar" type="button" aria-label="Đổi ảnh đại diện" title="Đổi ảnh đại diện">
+                        <span id="account-avatar-initial" aria-hidden="true">?</span>
+                        <img id="account-avatar-image" alt="" hidden>
+                        <span class="avatar-change-hint" aria-hidden="true">Đổi ảnh</span>
+                    </button>
+                    <input id="account-avatar-input" class="account-avatar-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+                </div>
+                <p id="account-avatar-message" class="account-avatar-message" role="status" aria-live="polite" hidden></p>
+                <button id="account-logout" class="account-logout" type="button">Đăng xuất</button>
+            </div>
+        </div>
+        <h1>🌍 Website Học Địa Lý</h1>
+        <h1>🌍 HỌC ĐỊA LÝ THPT</h1>
+        <p>Lớp 10 - 11 - 12</p>
+    </header>
+
+    <dialog id="account-dialog" class="account-dialog" aria-labelledby="account-title">
+        <div class="account-dialog-head">
+            <div>
+                <p class="account-kicker">TÀI KHOẢN HỌC TẬP</p>
+                <h2 id="account-title">Đăng nhập</h2>
+            </div>
+            <button id="account-close" class="account-close" type="button" aria-label="Đóng">×</button>
+        </div>
+        <p class="account-description">Dùng tên đăng nhập và mật khẩu (ít nhất 8 ký tự), không cần email hay số điện thoại. Hãy lưu mật khẩu cẩn thận vì không có liên kết để khôi phục.</p>
+        <form id="account-form">
+            <label for="account-username">Tên đăng nhập</label>
+            <input id="account-username" name="username" type="text" autocomplete="username" minlength="3" maxlength="24" pattern="[A-Za-z0-9_]+" required>
+            <label for="account-password">Mật khẩu</label>
+            <input id="account-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" required>
+            <p id="account-message" class="account-message" role="status" aria-live="polite"></p>
+            <button id="account-submit" class="account-submit" type="submit">Đăng nhập</button>
+        </form>
+        <button id="account-mode" class="account-mode" type="button">Chưa có tài khoản? Tạo tài khoản</button>
+    </dialog>
+
+    <div class="container">
+
+    <div class="card">
+        <h2>🎮 Trò Chơi Địa Lí</h2>
+        <p>Học mà chơi với các trò chơi địa lí tương tác.</p>
+        <button onclick="window.location.href='trochoi.html'">
+            Vào trang trò chơi
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>📚 Địa Lí 10</h2>
+        <p>Địa lí tự nhiên, dân cư và kinh tế thế giới.</p>
+
+        <button onclick="hienLop10()">
+            Xem bài học
+        </button>
+
+        <div id="lop10" style="display:none;">
+
+            <div class="lesson">🌍 Bài 1: Môn Địa lí với định hướng nghề nghiệp</div>
+            <div class="lesson">🗺️ Bài 2: Phương pháp biểu hiện các đối tượng địa lí trên bản đồ</div>
+            <div class="lesson">📍 Bài 3: Sử dụng bản đồ và GPS trong đời sống</div>
+            <div class="lesson">🌎 Bài 4: Sự hình thành Trái Đất</div>
+            <div class="lesson">🌞 Bài 5: Hệ quả địa lí các chuyển động của Trái Đất</div>
+            <div class="lesson">⛰️ Bài 6: Thạch quyển và thuyết kiến tạo mảng</div>
+    <div class="lesson">🌋 Bài 7: Nội lực và ngoại lực</div>
+    <div class="lesson">💥 Bài 8: Thực hành về động đất và núi lửa</div>
+    <div class="lesson">☁️ Bài 9: Khí quyển và các yếu tố khí hậu</div>
+    <div class="lesson">🌦️ Bài 10: Thực hành các đới khí hậu trên Trái Đất</div>
+    <div class="lesson">💧 Bài 11: Thủy quyển và nước trên lục địa</div>
+    <div class="lesson">🌊 Bài 12: Nước biển và đại dương</div>
+    <div class="lesson">🏞️ Bài 13: Thực hành chế độ nước sông</div>
+    <div class="lesson">🌱 Bài 14: Đất trên Trái Đất</div>
+    <div class="lesson">🌳 Bài 15: Sinh quyển</div>
+    <div class="lesson">🐾 Bài 16: Phân bố đất và sinh vật trên thế giới</div>
+    <div class="lesson">🌐 Bài 17: Vỏ địa lí</div>
+    <div class="lesson">🧭 Bài 18: Quy luật địa đới và phi địa đới</div>
+    <div class="lesson">👨‍👩‍👧‍👦 Bài 19: Dân số thế giới</div>
+    <div class="lesson">🏙️ Bài 20: Phân bố dân cư và đô thị hóa</div>
+    <div class="lesson">💰 Bài 21: Các nguồn lực phát triển kinh tế</div>
+    <div class="lesson">📈 Bài 22: Cơ cấu nền kinh tế</div>
+    <div class="lesson">🌾 Bài 23: Vai trò và đặc điểm nông nghiệp</div>
+    <div class="lesson">🚜 Bài 24: Địa lí ngành nông nghiệp</div>
+    <div class="lesson">🌲 Bài 25: Địa lí ngành lâm nghiệp và thủy sản</div>
+    <div class="lesson">📍 Bài 26: Tổ chức lãnh thổ nông nghiệp</div>
+    <div class="lesson">📊 Bài 27: Thực hành về sản xuất nông nghiệp thế giới</div>
+    <div class="lesson">🏭 Bài 28: Vai trò và đặc điểm công nghiệp</div>
+    <div class="lesson">⚙️ Bài 29: Các ngành công nghiệp</div>
+    <div class="lesson">🏗️ Bài 30: Tổ chức lãnh thổ công nghiệp</div>
+    <div class="lesson">♻️ Bài 31: Công nghiệp và môi trường</div>
+    <div class="lesson">📉 Bài 32: Thực hành về công nghiệp</div>
+    <div class="lesson">🏦 Bài 33: Địa lí ngành dịch vụ</div>
+    <div class="lesson">🚆 Bài 34: Giao thông vận tải</div>
+    <div class="lesson">📡 Bài 35: Bưu chính viễn thông</div>
+    <div class="lesson">🛒 Bài 36: Thương mại</div>
+
+            <div class="lesson">✈️ Bài 37: Du lịch</div>
+
+        </div>
+    </div>
+<div class="card">
+    <h2>📖 Địa Lý 11</h2>
+    <p>Các khu vực và quốc gia trên thế giới.</p>
+
+    <button onclick="hienLop11()">
+        Xem bài học
+    </button>
+
+    <div id="lop11" style="display:none; margin-top:15px;">
+
+        <div class="lesson">🌍 Bài 1: Sự khác biệt về trình độ phát triển kinh tế - xã hội của các nhóm nước</div>
+        <div class="lesson">🌐 Bài 2: Toàn cầu hóa và khu vực hóa kinh tế</div>
+        <div class="lesson">📊 Bài 3: Thực hành tìm hiểu cơ hội và thách thức của toàn cầu hóa</div>
+        <div class="lesson">🤝 Bài 4: Một số tổ chức quốc tế và khu vực, an ninh toàn cầu</div>
+        <div class="lesson">💡 Bài 5: Thực hành viết báo cáo về nền kinh tế tri thức</div>
+
+        <div class="lesson">🌎 Bài 6: Vị trí địa lí, điều kiện tự nhiên, dân cư và xã hội khu vực Mỹ La-tinh</div>
+        <div class="lesson">💰 Bài 7: Kinh tế khu vực Mỹ La-tinh</div>
+        <div class="lesson">🇧🇷 Bài 8: Thực hành về tình hình phát triển kinh tế - xã hội Bra-xin</div>
+
+        <div class="lesson">🇪🇺 Bài 9: Liên minh châu Âu - một liên kết kinh tế khu vực lớn</div>
+        <div class="lesson">🏭 Bài 10: Thực hành về sự phát triển công nghiệp của Đức</div>
+
+        <div class="lesson">🌴 Bài 11: Vị trí địa lí, điều kiện tự nhiên, dân cư và xã hội Đông Nam Á</div>
+        <div class="lesson">📈 Bài 12: Kinh tế Đông Nam Á</div>
+        <div class="lesson">🏳️ Bài 13: Hiệp hội các quốc gia Đông Nam Á (ASEAN)</div>
+        <div class="lesson">🚢 Bài 14: Hoạt động kinh tế đối ngoại của Đông Nam Á</div>
+
+        <div class="lesson">🏜️ Bài 15: Vị trí địa lí, điều kiện tự nhiên, dân cư và xã hội Tây Nam Á</div>
+        <div class="lesson">🛢️ Bài 16: Kinh tế khu vực Tây Nam Á</div>
+        <div class="lesson">⛽ Bài 17: Vấn đề dầu khí của khu vực Tây Nam Á</div>
+
+        <div class="lesson">🦅 Bài 18: Vị trí địa lí, điều kiện tự nhiên và dân cư Hoa Kỳ</div>
+        <div class="lesson">💵 Bài 19: Kinh tế Hoa Kỳ</div>
+
+        <div class="lesson">❄️ Bài 20: Vị trí địa lí, điều kiện tự nhiên, dân cư và xã hội Liên bang Nga</div>
+        <div class="lesson">🚂 Bài 21: Kinh tế Liên bang Nga</div>
+        <div class="lesson">🛢️ Bài 22: Công nghiệp khai thác dầu khí của Liên bang Nga</div>
+
+        <div class="lesson">🌸 Bài 23: Vị trí địa lí, điều kiện tự nhiên, dân cư và xã hội Nhật Bản</div>
+        <div class="lesson">🏙️ Bài 24: Kinh tế Nhật Bản</div>
+        <div class="lesson">🚢 Bài 25: Hoạt động kinh tế đối ngoại của Nhật Bản</div>
+
+        <div class="lesson">🐉 Bài 26: Vị trí địa lí, điều kiện tự nhiên, dân cư và xã hội Trung Quốc</div>
+        <div class="lesson">🏗️ Bài 27: Kinh tế Trung Quốc</div>
+        <div class="lesson">🌆 Bài 28: Sự thay đổi kinh tế vùng duyên hải Trung Quốc</div>
+
+        <div class="lesson">🦘 Bài 29: Thực hành tìm hiểu kinh tế Ô-xtrây-li-a</div>
+
+        <div class="lesson">💎 Bài 30: Vị trí địa lí, điều kiện tự nhiên, dân cư và xã hội Cộng hòa Nam Phi</div>
+        <div class="lesson">🏞️ Bài 31: Kinh tế Cộng hòa Nam Phi</div>
+
+    </div>
+</div>
+
+
+       <div class="card">
+
+    <h2>🇻🇳 Địa Lí 12</h2>
+
+    <p>Địa lí Việt Nam và luyện thi THPT.</p>
+
+    <button onclick="hienLop12()">
+        Xem bài học
+    </button>
+
+    <div id="lop12" style="display:none;">
+
+        <div class="lesson">🌏 Bài 1: Vị trí địa lí và phạm vi lãnh thổ</div>
+
+        <div class="lesson">🌦️ Bài 2: Thiên nhiên nhiệt đới ẩm gió mùa</div>
+
+        <div class="lesson">⛰️ Bài 3: Sự phân hóa đa dạng của thiên nhiên</div>
+
+        <div class="lesson">📝 Bài 4: Thực hành - Sự phân hóa tự nhiên Việt Nam</div>
+
+        <div class="lesson">🌱 Bài 5: Sử dụng hợp lí tài nguyên thiên nhiên và bảo vệ môi trường</div>
+
+        <div class="lesson">👨‍👩‍👧‍👦 Bài 6: Dân số Việt Nam</div>
+
+        <div class="lesson">👷 Bài 7: Lao động và việc làm</div>
+
+        <div class="lesson">🏙️ Bài 8: Đô thị hóa</div>
+
+        <div class="lesson">📝 Bài 9: Thực hành - Địa lí dân cư Việt Nam</div>
+
+        <div class="lesson">📈 Bài 10: Chuyển dịch cơ cấu kinh tế</div>
+
+        <div class="lesson">🌾 Bài 11: Phát triển ngành nông nghiệp</div>
+
+        <div class="lesson">🌳 Bài 12: Phát triển ngành lâm nghiệp và thủy sản</div>
+
+        <div class="lesson">🚜 Bài 13: Tổ chức lãnh thổ nông nghiệp</div>
+
+        <div class="lesson">📊 Bài 14: Thực hành - Ngành nông nghiệp, lâm nghiệp và thủy sản</div>
+
+        <div class="lesson">🏭 Bài 15: Chuyển dịch cơ cấu ngành công nghiệp</div>
+
+        <div class="lesson">⚡ Bài 16: Một số ngành công nghiệp</div>
+
+        <div class="lesson">🏗️ Bài 17: Tổ chức lãnh thổ công nghiệp</div>
+
+        <div class="lesson">📊 Bài 18: Thực hành - Phát triển ngành công nghiệp</div>
+
+        <div class="lesson">🛎️ Bài 19: Vai trò và các nhân tố ảnh hưởng đến dịch vụ</div>
+
+        <div class="lesson">🚆 Bài 20: Giao thông vận tải và bưu chính viễn thông</div>
+
+        <div class="lesson">🛍️ Bài 21: Thương mại và du lịch</div>
+
+        <div class="lesson">📊 Bài 22: Thực hành - Phát triển một số ngành dịch vụ</div>
+
+        <div class="lesson">⛰️ Bài 23: Khai thác thế mạnh ở Trung du và miền núi Bắc Bộ</div>
+
+        <div class="lesson">🌾 Bài 24: Phát triển kinh tế - xã hội ở Đồng bằng sông Hồng</div>
+
+        <div class="lesson">🌳 Bài 25: Phát triển nông nghiệp, lâm nghiệp và thủy sản ở Bắc Trung Bộ</div>
+
+        <div class="lesson">🌊 Bài 26: Phát triển kinh tế biển ở Duyên hải Nam Trung Bộ</div>
+
+        <div class="lesson">📝 Bài 27: Thực hành - Kinh tế biển và quốc phòng an ninh</div>
+
+        <div class="lesson">☕ Bài 28: Khai thác thế mạnh phát triển kinh tế ở Tây Nguyên</div>
+
+        <div class="lesson">🏙️ Bài 29: Phát triển kinh tế - xã hội ở Đông Nam Bộ</div>
+
+        <div class="lesson">🌾 Bài 30: Sử dụng hợp lí tự nhiên ở Đồng bằng sông Cửu Long</div>
+
+        <div class="lesson">🌡️ Bài 31: Thực hành - Biến đổi khí hậu ở Đồng bằng sông Cửu Long</div>
+
+        <div class="lesson">📈 Bài 32: Phát triển các vùng kinh tế trọng điểm</div>
+
+        <div class="lesson">🇻🇳 Bài 33: Phát triển kinh tế và đảm bảo quốc phòng an ninh ở Biển Đông</div>
+
+        <div class="lesson">📝 Bài 34: Thực hành - Bảo vệ chủ quyền biển đảo Việt Nam</div>
+
+        <div class="lesson">📍 Bài 35: Thực hành - Tìm hiểu địa lí địa phương</div>
+
+    </div>
+
+</div>
+    </div>
+
+    <img class="corner-gif corner-gif-left" src="images/kasane_teto_smooth_slow.gif" alt="" aria-hidden="true">
+    <img class="corner-gif corner-gif-right" src="images/miku_smooth_slow.gif" alt="" aria-hidden="true">
+
+    <script src="auth.js"></script>
+</body>
+</html>     
