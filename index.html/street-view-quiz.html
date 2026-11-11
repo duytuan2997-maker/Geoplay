@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quan sát ảnh đường phố Mapillary và đoán tỉnh, thành phố ở Việt Nam.">
+    <title>Đoán Tỉnh Thành qua Mapillary</title>
+    <link rel="stylesheet" href="street-view-quiz.css">
+    <link rel="stylesheet" href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css">
+    <script src="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.js" defer></script>
+    <script src="street-view-quiz.js" defer></script>
+</head>
+<body>
+    <header class="quiz-header">
+        <a href="trochoi.html" class="back-link">← Danh sách trò chơi</a>
+        <p class="eyebrow">THỬ THÁCH ĐỊA LÍ</p>
+        <h1>Đoán tỉnh thành</h1>
+        <p>Quan sát khung cảnh 360° rồi đoán nơi bạn đang đứng.</p>
+    </header>
+
+    <main class="quiz-main">
+        <section id="setup-panel" class="panel setup-panel">
+            <div class="setup-icon" aria-hidden="true">🌏</div>
+            <h2>Kết nối Mapillary</h2>
+            <p>Nhập Client Access Token của Mapillary. Token được lưu riêng trong trình duyệt này.</p>
+            <form id="setup-form">
+                <label for="access-token">Mapillary Client Access Token</label>
+                <input id="access-token" type="password" autocomplete="off" spellcheck="false" placeholder="Nhập token Mapillary của bạn" required>
+                <button class="primary-button" type="submit">Lưu và bắt đầu</button>
+            </form>
+            <button id="change-token" class="text-button" type="button" hidden>Đổi token</button>
+            <p id="setup-message" class="message" role="status" aria-live="polite"></p>
+            <details class="help-details">
+                <summary>Cách lấy Client Access Token</summary>
+                <ol>
+                    <li>Đăng nhập hoặc tạo tài khoản Mapillary.</li>
+                    <li>Đăng ký ứng dụng trong <a href="https://www.mapillary.com/dashboard/developers" target="_blank" rel="noopener noreferrer">Mapillary Developer Dashboard</a>.</li>
+                    <li>Sao chép Client Access Token của ứng dụng rồi nhập vào ô phía trên.</li>
+                </ol>
+                <p>Token được dùng trong trình duyệt để gọi Mapillary API và hiển thị ảnh. Không chia sẻ token công khai.</p>
+            </details>
+        </section>
+
+        <section id="game-panel" class="panel game-panel" hidden>
+            <div class="game-topbar">
+                <a href="trochoi.html" class="back-link dark-link">← Trò chơi</a>
+                <div class="game-progress">
+                    <span id="round-status">Lượt 1 / 10</span>
+                    <span id="score-status">Điểm: 0</span>
+                </div>
+            </div>
+
+            <div class="game-layout">
+                <section class="street-panel" aria-label="Ảnh toàn cảnh đường phố">
+                    <div id="street-view" class="street-view" aria-label="Trình xem ảnh Mapillary"></div>
+                    <p class="street-hint">Kéo để xoay góc nhìn · cuộn để phóng to</p>
+                </section>
+
+                <section class="answer-panel">
+                    <p class="eyebrow">BẠN ĐANG Ở ĐÂU?</p>
+                    <h2>Đoán tỉnh hoặc thành phố</h2>
+                    <p class="answer-description">Quan sát biển báo, kiến trúc và cảnh quan xung quanh.</p>
+                    <form id="guess-form">
+                        <label for="guess-input">Tên tỉnh / thành phố</label>
+                        <input id="guess-input" type="text" autocomplete="off" placeholder="Ví dụ: Đà Nẵng" required>
+                        <button id="guess-button" class="primary-button" type="submit">Chốt đáp án</button>
+                    </form>
+                    <p id="game-message" class="message" role="status" aria-live="polite"></p>
+                    <button id="next-button" class="secondary-button" type="button" hidden>Lượt tiếp theo</button>
+                    <button id="skip-button" class="text-button" type="button">Bỏ qua vị trí này</button>
+                </section>
+            </div>
+        </section>
+
+        <section id="result-panel" class="panel result-panel" hidden>
+            <div class="setup-icon" aria-hidden="true">🏁</div>
+            <p class="eyebrow">HOÀN THÀNH</p>
+            <h2>Chuyến khám phá kết thúc!</h2>
+            <p id="final-score" class="final-score"></p>
+            <p id="final-detail" class="final-detail"></p>
+            <button id="play-again-button" class="primary-button" type="button">Chơi lại</button>
+            <a href="trochoi.html" class="text-button result-link">Về danh sách trò chơi</a>
+        </section>
+    </main>
+</body>
+</html>

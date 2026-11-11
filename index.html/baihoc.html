@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bài học Địa lí</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    font-family:Segoe UI,sans-serif;
+    background:#f4f7fb;
+    margin:0;
+}
+
+.lesson-container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.lesson-card{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.lesson-title{
+    color:#1a73e8;
+    margin-bottom:20px;
+}
+
+.lesson-content{
+    line-height:1.8;
+    font-size:17px;
+}
+
+.lesson-content ul{
+    padding-left:25px;
+}
+
+.lesson-content li{
+    margin:10px 0;
+}
+
+.banner{
+    background:linear-gradient(
+        135deg,
+        #1a73e8,
+        #34a853
+    );
+
+    color:white;
+    text-align:center;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    font-size:32px;
+    font-weight:bold;
+
+    margin-bottom:25px;
+}
+
+.info-box{
+    background:#f8f9fa;
+    padding:20px;
+    border-left:6px solid #1a73e8;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.note-box{
+    background:#fff3cd;
+    padding:20px;
+    border-radius:12px;
+    margin:20px 0;
+}
+
+.back-btn{
+    background:#1a73e8;
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.back-btn:hover{
+    background:#1565c0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th{
+    background:#1a73e8;
+    color:white;
+    padding:12px;
+}
+
+td{
+    border:1px solid #ddd;
+    padding:12px;
+}       
+
+tr:nth-child(even){
+    background:#f5f5f5;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="lesson-container">
+
+    <div class="lesson-card">
+
+        <h1 id="title" class="lesson-title"></h1>
+
+        <div
+            id="content"
+            class="lesson-content">
+        </div>
+
+        <br>
+
+        <a href="index.html" class="back-btn">Quay lại trang chủ</a>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const lessonId = params.get("id") || "1";
+const lesson = lessons[lessonId];
+
+if (lesson) {
+    document.getElementById("title").textContent = lesson.title;
+    document.getElementById("content").innerHTML = lesson.content;
+    document.title = lesson.title;
+} else {
+    document.getElementById("title").textContent = "Không tìm thấy bài học";
+}
+</script>
+
+</body>
+</html>
