@@ -65,6 +65,32 @@ function updateUI() {
 
 updateUI();
 
+const gameAvatarImage = document.getElementById("game-avatar-image");
+const gameAvatarInitial = document.getElementById("game-avatar-initial");
+if (gameAvatarImage && gameAvatarInitial) {
+    fetch("/api/me")
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error("Không thể tải thông tin tài khoản.");
+            }
+            return response.json();
+        })
+        .then(function (result) {
+            const user = result.user;
+            if (!user) return;
+
+            gameAvatarInitial.textContent = user.username.charAt(0).toUpperCase();
+            if (user.avatar) {
+                gameAvatarImage.src = user.avatar;
+                gameAvatarImage.hidden = false;
+                gameAvatarInitial.hidden = true;
+            }
+        })
+        .catch(function (error) {
+            console.error("Không thể tải ảnh đại diện tài khoản:", error);
+        });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const lessons = document.querySelectorAll(".lesson");
     let activeLesson = null;

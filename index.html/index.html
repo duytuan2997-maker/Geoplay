@@ -10,7 +10,19 @@
 
     <script src="lesson-content.js"></script>
     <script src="script.js"></script>
-    <header class="home-header">
+    <header class="home-header" id="home">
+        <nav class="hero-nav" aria-label="Điều hướng chính">
+            <a class="hero-brand" href="#home" aria-label="Trang chủ">
+                <img class="hero-brand-image" src="images/logo-akari.png?v=2" alt="">
+            </a>
+            <div class="hero-links">
+                <a class="active" href="#home">TRANG CHỦ</a>
+                <a href="#courses">BÀI HỌC</a>
+                <a href="#games">TRÒ CHƠI</a>
+                <a href="#travel">DU LỊCH</a>
+            </div>
+            <span class="hero-language" aria-label="Ngôn ngữ: Tiếng Việt">VI</span>
+        </nav>
         <div class="account-toolbar">
             <button id="account-open" class="account-open" type="button">Đăng nhập / Tạo tài khoản</button>
             <div id="account-profile" class="account-profile" hidden>
@@ -41,9 +53,6 @@
                 <button id="account-logout" class="account-logout" type="button">Đăng xuất</button>
             </div>
         </div>
-        <h1>🌍 Website Học Địa Lý</h1>
-        <h1>🌍 HỌC ĐỊA LÝ THPT</h1>
-        <p>Lớp 10 - 11 - 12</p>
     </header>
 
     <dialog id="account-dialog" class="account-dialog" aria-labelledby="account-title">
@@ -66,9 +75,31 @@
         <button id="account-mode" class="account-mode" type="button">Chưa có tài khoản? Tạo tài khoản</button>
     </dialog>
 
+    <main>
+    <section class="earth-hero" aria-labelledby="hero-title">
+        <div class="hero-stars" aria-hidden="true"></div>
+        <p class="hero-kicker">HÀNH TRÌNH KHÁM PHÁ BẮT ĐẦU TỪ ĐÂY</p>
+        <h1 id="hero-title" class="hero-title">ĐỊA LÍ<br><span>VIỆT NAM</span></h1>
+        <div class="earth-stage">
+            <div class="earth-orbit earth-orbit-one" aria-hidden="true"></div>
+            <div class="earth-orbit earth-orbit-two" aria-hidden="true"></div>
+            <div class="earth-glow" aria-hidden="true"></div>
+            <canvas id="earth-canvas" class="earth-canvas" aria-label="Mô hình Trái Đất 3D có thể kéo để xoay">
+                Trình duyệt của bạn không hỗ trợ mô hình Trái Đất.
+            </canvas>
+        </div>
+        <div class="hero-caption">
+            <p>HỌC TẬP <span>·</span> KHÁM PHÁ <span>·</span> CHINH PHỤC</p>
+            <p class="earth-hint">Kéo Trái Đất để xoay · Tự động xoay</p>
+        </div>
+        <a class="hero-scroll" href="#courses">CUỘN ĐỂ KHÁM PHÁ <span aria-hidden="true">↓</span></a>
+        <div class="hero-landscape hero-landscape-left" aria-hidden="true"></div>
+        <div class="hero-landscape hero-landscape-right" aria-hidden="true"></div>
+    </section>
+
     <div class="container">
 
-    <div class="card">
+    <div id="games" class="card">
         <h2>🎮 Trò Chơi Địa Lí</h2>
         <p>Học mà chơi với các trò chơi địa lí tương tác.</p>
         <button onclick="window.location.href='trochoi.html'">
@@ -76,7 +107,7 @@
         </button>
     </div>
 
-    <div class="card">
+    <div id="courses" class="card">
         <h2>📚 Địa Lí 10</h2>
         <p>Địa lí tự nhiên, dân cư và kinh tế thế giới.</p>
 
@@ -183,7 +214,7 @@
 </div>
 
 
-       <div class="card">
+       <div id="travel" class="card">
 
     <h2>🇻🇳 Địa Lí 12</h2>
 
@@ -268,11 +299,15 @@
     </div>
 
 </div>
+    <div class="card">
+        <h2>🧳 Du lịch Việt Nam</h2>
+        <p>Khám phá cảnh đẹp, văn hóa và đặc sản đặc trưng của ba miền đất nước.</p>
+        <button onclick="window.location.href='du-lich-viet-nam.html'">Khám phá các điểm đến</button>
+    </div>
     </div>
 
-    <img class="corner-gif corner-gif-left" src="images/kasane_teto_smooth_slow.gif" alt="" aria-hidden="true">
-    <img class="corner-gif corner-gif-right" src="images/miku_smooth_slow.gif" alt="" aria-hidden="true">
-
     <script src="auth.js"></script>
+    <script src="earth-globe.js"></script>
+    </main>
 </body>
 </html>     

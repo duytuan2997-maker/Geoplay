@@ -22,7 +22,7 @@
         <section id="setup-panel" class="panel setup-panel">
             <div class="setup-icon" aria-hidden="true">🌏</div>
             <h2>Kết nối Mapillary</h2>
-            <p>Nhập Client Access Token của Mapillary. Token được lưu riêng trong trình duyệt này.</p>
+            <p>Trò chơi sẽ tự kết nối nếu trang đã được cấu hình token dùng chung. Nếu chưa, nhập Client Access Token để lưu trên thiết bị này.</p>
             <form id="setup-form">
                 <label for="access-token">Mapillary Client Access Token</label>
                 <input id="access-token" type="password" autocomplete="off" spellcheck="false" placeholder="Nhập token Mapillary của bạn" required>
@@ -37,7 +37,7 @@
                     <li>Đăng ký ứng dụng trong <a href="https://www.mapillary.com/dashboard/developers" target="_blank" rel="noopener noreferrer">Mapillary Developer Dashboard</a>.</li>
                     <li>Sao chép Client Access Token của ứng dụng rồi nhập vào ô phía trên.</li>
                 </ol>
-                <p>Token được dùng trong trình duyệt để gọi Mapillary API và hiển thị ảnh. Không chia sẻ token công khai.</p>
+                <p>Token được gửi tới trình duyệt để gọi Mapillary API và hiển thị ảnh. Chỉ cấu hình token phù hợp để sử dụng trong ứng dụng web công khai.</p>
             </details>
         </section>
 

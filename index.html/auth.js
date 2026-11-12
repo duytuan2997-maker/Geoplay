@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             result = JSON.parse(responseText);
         } catch {
-            throw new Error("Máy chủ không trả dữ liệu hợp lệ. Hãy chạy `npm start` và mở trang tại http://localhost:3000.");
+            throw new Error("Máy chủ API không hoạt động đúng. Hãy kiểm tra ứng dụng Node.js đang chạy và trang web được phục vụ từ máy chủ này.");
         }
         if (!response.ok) {
             throw new Error(result.error || "Không thể thực hiện yêu cầu.");

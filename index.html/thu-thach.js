@@ -80,7 +80,362 @@ const places = [
     creator: "Canaan", license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:SF_maig_2026.jpg",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
-  }
+  },
+  {
+    name: "Vịnh Hạ Long",
+    lat: 20.833333, lon: 107.233333,
+    image: "images/geo-challenge/ha-long-bay.jpg",
+    creator: "Thomas Hirsch (Ravn)", license: "CC BY-SA 3.0",
+    source: "https://commons.wikimedia.org/wiki/File:Halong_Bay_in_Vietnam.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+    name: "Phố cổ Hội An",
+    lat: 15.877108, lon: 108.328603,
+    image: "images/geo-challenge/hoi-an.jpg",
+    creator: "Steffen Schmitz (Carschten)", license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:H%E1%BB%99i_An,_Ancient_Town,_2020-01_CN-05.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
+    name: "Đại Nội Huế",
+    lat: 16.470154, lon: 107.577481,
+    image: "images/geo-challenge/hue-citadel.jpg",
+    creator: "Uwe Aranas (CEphoto)", license: "CC BY-SA 3.0",
+    source: "https://commons.wikimedia.org/wiki/File:Hue_Vietnam_Citadel-of-Hu%E1%BA%BF-05.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+    name: "Cầu Vàng Bà Nà",
+    lat: 15.997735, lon: 107.985889,
+    image: "images/geo-challenge/golden-bridge-vietnam.jpg",
+    creator: "Laslovarga", license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Vietnam,_Ba_Na_Hill,_Golden_Bridge_-_Laslovarga.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
+    name: "Quần thể Tràng An",
+    lat: 20.249643, lon: 105.914801,
+    image: "images/geo-challenge/trang-an.jpg",
+    creator: "Jakub Hałun", license: "CC BY 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Trang_An_Landscape_Complex,_Ninh_Binh_Province,_Vietnam,_20240202_1404_5216.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+  name: "Vạn Lý Trường Thành",
+    lat: 40.429152, lon: 116.567248,
+  image: "images/geo-challenge/great-wall.jpg",
+    creator: "Velatrix",
+    license: "CC0",
+    source: "https://commons.wikimedia.org/wiki/File:Great_Wall_of_China_July_2006.JPG",
+    licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+},
+{
+  name: "Núi Phú Sĩ",
+  lat: 35.360556, lon: 138.727778,
+  image: "images/geo-challenge/mount-fuji.jpg",
+    creator: "Romain Guy",
+    license: "CC0",
+    source: "https://commons.wikimedia.org/wiki/File:Mount_Fuji_at_sunset,_March_2025.jpg",
+    licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+},
+{
+  name: "Christ the Redeemer",
+  lat: -22.951944, lon: -43.210556,
+  image: "images/geo-challenge/christ-redeemer.jpg",
+    creator: "Sean Vivek Crasto",
+    license: "Public domain",
+  source: "https://commons.wikimedia.org/wiki/File:Cristo_Redentor_-_Rio.jpg",
+    licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+},
+{
+  name: "Kim tự tháp Giza",
+  lat: 29.979167, lon: 31.134167,
+  image: "images/geo-challenge/great-pyramid-giza.jpg",
+    creator: "Ricardo Liberato",
+    license: "CC BY-SA 2.0",
+  source: "https://commons.wikimedia.org/wiki/File:All_Gizah_Pyramids.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/"
+},
+{
+  name: "Angkor Wat",
+  lat: 13.412469, lon: 103.866986,
+  image: "images/geo-challenge/angkor-wat.jpg",
+    creator: "Satdeep Gill",
+    license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Angkor_Wat_with_its_reflection_(cropped).jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+},
+{
+  name: "Stonehenge",
+  lat: 51.178889, lon: -1.826111,
+  image: "images/geo-challenge/stonehenge.jpg",
+    creator: "garethwiscombe",
+    license: "CC BY 2.0",
+  source: "https://commons.wikimedia.org/wiki/File:Stonehenge2007_07_30.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by/2.0/"
+},
+{
+  name: "Núi Bàn (Table Mountain)",
+  lat: -33.962778, lon: 18.409722,
+  image: "images/geo-challenge/table-mountain.jpg",
+    creator: "Dietmar Rabich",
+    license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Cape_Town_(ZA),_Table_Mountain_--_2024_--_2794+96+98+2800+01.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+},
+{
+  name: "Lâu đài Neuschwanstein",
+  lat: 47.557574, lon: 10.749800,
+  image: "images/geo-challenge/neuschwanstein.jpg",
+  creator: "Thomas Wolf",
+    license: "CC BY-SA 3.0 DE",
+  source: "https://commons.wikimedia.org/wiki/File:Schloss_Neuschwanstein_2013.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/de/"
+},
+{
+  name: "Thác Iguazu",
+  lat: -25.695278, lon: -54.436667,
+  image: "images/geo-challenge/iguazu-falls.jpg",
+    creator: "Emesbe",
+    license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:Iguazu_Falls.jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+  name: "Núi Kilimanjaro",
+  lat: -3.067425, lon: 37.355627,
+  image: "images/geo-challenge/kilimanjaro.jpg",
+    creator: "Ray in Manila",
+    license: "CC BY 2.0",
+    source: "https://commons.wikimedia.org/wiki/File:Kibo_Summit,_Mount_Kilimanjaro,_Tanzania_(30819102678).jpg",
+    licenseUrl: "https://creativecommons.org/licenses/by/2.0/"
+},
+{
+  name: "Đền Parthenon",
+  lat: 37.971532, lon: 23.726726,
+  image: "images/geo-challenge/parthenon.jpg",
+  creator: "Steve Swayne",
+  license: "CC BY 2.0",
+  source: "https://commons.wikimedia.org/wiki/File:The_Parthenon_in_Athens.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by/2.0/"
+},
+{
+  name: "Cung điện Potala",
+  lat: 29.657778, lon: 91.117222,
+  image: "images/geo-challenge/potala-palace.jpg",
+  creator: "Ondřej Žváček",
+  license: "CC BY 2.5",
+  source: "https://commons.wikimedia.org/wiki/File:Potala.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by/2.5/"
+},
+{
+  name: "Núi Rushmore",
+  lat: 43.879102, lon: -103.459067,
+  image: "images/geo-challenge/mount-rushmore.jpg",
+  creator: "Jim Bowen",
+  license: "CC BY 2.0",
+  source: "https://commons.wikimedia.org/wiki/File:Mount_Rushmore_National_Memorial.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by/2.0/"
+},
+{
+  name: "Cung điện Versailles",
+  lat: 48.804865, lon: 2.120355,
+  image: "images/geo-challenge/versailles.jpg",
+  creator: "Simdaperce",
+  license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:Chateau_de_Versailles.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+  name: "Burj Khalifa",
+  lat: 25.197197, lon: 55.274376,
+  image: "images/geo-challenge/burj-khalifa.jpg",
+  creator: "Jpbowen",
+  license: "CC BY-SA 4.0",
+  source: "https://commons.wikimedia.org/wiki/File:Burj_Khalifa_from_a_ferry,_Dubai.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+},
+{
+  name: "Lâu đài Edinburgh",
+  lat: 55.948611, lon: -3.199913,
+  image: "images/geo-challenge/edinburgh-castle.jpg",
+  creator: "Kim Traynor",
+  license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:Edinburgh_Castle_from_the_south_east.JPG",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+  name: "Moai đảo Phục Sinh",
+  lat: -27.121944, lon: -109.366111,
+  image: "images/geo-challenge/easter-island-moai.jpg",
+  creator: "Aurbina",
+  license: "Public domain",
+  source: "https://commons.wikimedia.org/wiki/File:Moai_Rano_raraku.jpg",
+  licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Licensing#Public_domain"
+},
+{
+  name: "Quảng trường Đỏ",
+  lat: 55.753931, lon: 37.620795,
+  image: "images/geo-challenge/red-square.jpg",
+  creator: "Юрий Д.К.",
+  license: "CC BY 4.0",
+  source: "https://commons.wikimedia.org/wiki/File:Red_Square_in_Moscow_(general_view_in_2025).jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by/4.0/"
+},
+{
+  name: "Tu viện Mont-Saint-Michel",
+  lat: 48.636111, lon: -1.511458,
+  image: "images/geo-challenge/mont-saint-michel.jpg",
+  creator: "Lsvichet",
+  license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:Le_Mont-Saint-Michel.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+  name: "Hẻm núi Grand Canyon",
+  lat: 36.106965, lon: -112.112997,
+  image: "images/geo-challenge/grand-canyon.jpg",
+  creator: "Chensiyuan",
+  license: "CC BY-SA 4.0",
+  source: "https://commons.wikimedia.org/wiki/File:Grand_Canyon_view_from_Pima_Point_2010.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+},
+{
+  name: "Tháp Nghiêng Pisa",
+  lat: 43.722952, lon: 10.396597,
+  image: "images/geo-challenge/leaning-tower-pisa.jpg",
+  creator: "Saffron Blaze",
+  license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:The_Leaning_Tower_of_Pisa_SB.jpeg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+  name: "Chichen Itza",
+  lat: 20.684284, lon: -88.567783,
+  image: "images/geo-challenge/chichen-itza.jpg",
+  creator: "Daniel Schwen",
+  license: "CC BY-SA 4.0",
+  source: "https://commons.wikimedia.org/wiki/File:Chichen_Itza_3.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+},
+{
+  name: "Borobudur",
+  lat: -7.607874, lon: 110.203751,
+  image: "images/geo-challenge/borobudur.jpg",
+  creator: "Gunawan Kartapranata",
+  license: "Public domain",
+  source: "https://commons.wikimedia.org/wiki/File:Borobudur-Nothwest-view.jpg",
+  licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Licensing#Public_domain"
+},
+{
+  name: "Cung điện Pena",
+  lat: 38.787463, lon: -9.390363,
+  image: "images/geo-challenge/pena-palace.jpg",
+  creator: "CEphoto, Uwe Aranas",
+  license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:Sintra_Portugal_Pal%C3%A1cio_da_Pena-01.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+  name: "Matterhorn",
+  lat: 45.976389, lon: 7.658611,
+  image: "images/geo-challenge/matterhorn.jpg",
+  creator: "Dirk Beyer",
+  license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:Matterhorn_Riffelsee_2005-06-11.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+  name: "Uluru",
+  lat: -25.344428, lon: 131.036882,
+  image: "images/geo-challenge/uluru.jpg",
+  creator: "Dietmar Rabich",
+  license: "CC BY-SA 4.0",
+  source: "https://commons.wikimedia.org/wiki/File:Petermann_Ranges_(AU),_Uluru-Kata_Tjuta_National_Park,_Uluru,_Kuniya_Walk_--_2019_--_3674.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+},
+{
+  name: "Nhà thờ Hồi giáo Sheikh Zayed",
+  lat: 24.412833, lon: 54.474722,
+  image: "images/geo-challenge/sheikh-zayed-mosque.jpg",
+  creator: "Guilhem Vellut",
+  license: "CC BY 2.0",
+  source: "https://commons.wikimedia.org/wiki/File:Sheikh_Zayed_Grand_Mosque_%40_Abu_Dhabi_(15856602738).jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by/2.0/"
+},
+{
+  name: "Đền Abu Simbel",
+  lat: 22.337231, lon: 31.625799,
+  image: "images/geo-challenge/abu-simbel.jpg",
+  creator: "Than217 at English Wikipedia",
+  license: "Public domain",
+  source: "https://commons.wikimedia.org/wiki/File:Abu_Simbel_Temple_May_30_2007.jpg",
+  licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Licensing#Public_domain"
+},
+{
+  name: "Làng Hallstatt",
+  lat: 47.562161, lon: 13.649300,
+  image: "images/geo-challenge/hallstatt.jpg",
+  creator: "Himadri",
+  license: "CC BY-SA 3.0 AT",
+  source: "https://commons.wikimedia.org/wiki/File:Hallstatt.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en"
+},
+{
+  name: "Hồ Moraine",
+  lat: 51.321722, lon: -116.186111,
+  image: "images/geo-challenge/moraine-lake.jpg",
+  creator: "Gorgo",
+  license: "Public domain",
+  source: "https://commons.wikimedia.org/wiki/File:Moraine_Lake_17092005.jpg",
+  licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Licensing#Public_domain"
+},
+{
+  name: "Cappadocia",
+  lat: 38.643056, lon: 34.828333,
+  image: "images/geo-challenge/cappadocia.jpg",
+  creator: "Leventtuncay",
+  license: "CC BY-SA 4.0",
+  source: "https://commons.wikimedia.org/wiki/File:Cappadocia_balloons.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+},
+{
+  name: "Blue Lagoon",
+  lat: 63.880389, lon: -22.449508,
+  image: "images/geo-challenge/blue-lagoon.jpg",
+  creator: "Jakub Hałun",
+  license: "CC BY-SA 4.0",
+  source: "https://commons.wikimedia.org/wiki/File:Blue_Lagoon_with_%C3%9Eorbj%C3%B6rn,_Iceland,_20230430_1626_3692.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+},
+{
+  name: "Khu bảo tồn Serengeti",
+  lat: -2.333333, lon: 34.833333,
+  image: "images/geo-challenge/serengeti.jpg",
+  creator: "Bjørn Christian Tørrissen",
+  license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:Serengeti-Landscape-2012.JPG",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+},
+{
+  name: "Torres del Paine",
+  lat: -50.942326, lon: -72.944640,
+  image: "images/geo-challenge/torres-del-paine.jpg",
+  creator: "John Spooner",
+  license: "CC BY 2.0",
+  source: "https://commons.wikimedia.org/wiki/File:Torres_del_Paine.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by/2.0/"
+},
+{
+  name: "India Gate",
+  lat: 28.612912, lon: 77.229509,
+  image: "images/geo-challenge/india-gate.jpg",
+  creator: "Shajankumar",
+  license: "CC BY-SA 3.0",
+  source: "https://commons.wikimedia.org/wiki/File:India_Gate_in_New_Delhi.jpg",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+}
 ];
 
 const elements = {
@@ -161,7 +516,7 @@ function shuffled(items) {
 
 function startGame() {
   window.clearInterval(timerId);
-  deck = shuffled(places);
+  deck = shuffled(places).slice(0, 10);
   roundIndex = 0;
   totalScore = 0;
   timeLeft = 60;

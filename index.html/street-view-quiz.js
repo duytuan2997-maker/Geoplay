@@ -205,7 +205,7 @@ function finishGame() {
     }
 }
 
-async function startGame(accessToken) {
+async function startGame(accessToken, saveToken = true) {
     elements.setupMessage.textContent = "Đang kiểm tra token Mapillary...";
     elements.setupForm.querySelector("button").disabled = true;
     try {
@@ -214,7 +214,11 @@ async function startGame(accessToken) {
         }
         await getImages(locations[0].position, accessToken);
         elements.setupMessage.textContent = "";
-        localStorage.setItem("mapillaryAccessToken", accessToken);
+        if (saveToken) {
+            localStorage.setItem("mapillaryAccessToken", accessToken);
+        } else {
+            localStorage.removeItem("mapillaryAccessToken");
+        }
         elements.accessToken.value = accessToken;
         elements.changeToken.hidden = false;
         deck = shuffle(locations);
@@ -231,6 +235,24 @@ async function startGame(accessToken) {
         elements.setupMessage.textContent = error.message;
     } finally {
         elements.setupForm.querySelector("button").disabled = false;
+    }
+}
+
+async function loadConfiguredToken() {
+    try {
+        const response = await fetch("/api/mapillary-config");
+        if (!response.ok) {
+            throw new Error(`Máy chủ trả về lỗi ${response.status}.`);
+        }
+        const config = await response.json();
+        if (typeof config.accessToken !== "string" || !config.accessToken.trim()) return;
+
+        const accessToken = config.accessToken.trim();
+        elements.accessToken.value = accessToken;
+        await startGame(accessToken, false);
+    } catch (error) {
+        elements.setupMessage.textContent =
+            `Không tải được token Mapillary dùng chung: ${error.message} Bạn vẫn có thể nhập token bên dưới.`;
     }
 }
 
@@ -257,5 +279,7 @@ elements.nextButton.addEventListener("click", showNextLocation);
 elements.playAgain.addEventListener("click", async () => {
     elements.results.hidden = true;
     elements.setup.hidden = false;
-    await startGame(localStorage.getItem("mapillaryAccessToken") || elements.accessToken.value.trim());
+    await startGame(elements.accessToken.value.trim() || localStorage.getItem("mapillaryAccessToken") || "");
 });
+
+loadConfiguredToken();

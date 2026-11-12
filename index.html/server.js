@@ -10,6 +10,8 @@ const root = __dirname;
 const dataDirectory = path.join(root, "data");
 const databasePath = process.env.DB_PATH || path.join(dataDirectory, "accounts.sqlite");
 const port = Number(process.env.PORT) || 3000;
+const host = process.env.HOST || (process.env.PORT ? "0.0.0.0" : "127.0.0.1");
+const mapillaryAccessToken = (process.env.MAPILLARY_ACCESS_TOKEN || "").trim();
 const sessionLifetime = 7 * 24 * 60 * 60 * 1000;
 const maxRequestBytes = 140 * 1024;
 const maxAvatarBytes = 96 * 1024;
@@ -184,6 +186,11 @@ function checkRateLimit(request, response) {
 }
 
 async function handleApi(request, response, pathname) {
+    if (request.method === "GET" && pathname === "/api/mapillary-config") {
+        sendJson(response, 200, { accessToken: mapillaryAccessToken });
+        return;
+    }
+
     if (request.method === "GET" && pathname === "/api/me") {
         const user = getSessionUser(request);
         if (!user) {
@@ -357,7 +364,7 @@ const server = http.createServer(async (request, response) => {
     }
 });
 
-server.listen(port, process.env.HOST || "127.0.0.1", () => {
+server.listen(port, host, () => {
     console.log(`Website đang chạy tại http://localhost:${port}`);
     if (production) {
         console.warn("Production mode requires HTTPS at the public entry point.");
