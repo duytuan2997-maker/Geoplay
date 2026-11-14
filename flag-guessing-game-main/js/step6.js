@@ -5,11 +5,11 @@ import shuffle from "./helpers/shuffle.js";
 loadCountries('js/data.json')
   .then((data) => {
     const countries = data.countries;
-    const game = new Game(countries);
+    const game = new Game(countries, 20);
   });
 
 class Game {
-  constructor(countries, numTurns = 10) {
+  constructor(countries, numTurns = 20) {
     // because we shift & slice the array we'll need to keep
     // an intact copy
     this.masterCountries = countries;

@@ -10,8 +10,46 @@ const locations = [
     { name: "Quảng Ninh", aliases: ["tinh quang ninh"], position: { lat: 20.9517, lng: 107.0802 } },
     { name: "Lào Cai", aliases: ["tinh lao cai"], position: { lat: 22.4856, lng: 103.9707 } },
     { name: "Nghệ An", aliases: ["tinh nghe an"], position: { lat: 18.6796, lng: 105.6813 } },
-    { name: "Cao Bằng", aliases: ["tinh cao bang"], position: { lat: 22.6657, lng: 106.257 } }
+    { name: "Cao Bằng", aliases: ["tinh cao bang"], position: { lat: 22.6657, lng: 106.257 } },
+    { name: "Hà Giang", aliases: ["tinh ha giang"], position: { lat: 22.8021, lng: 104.9784 } },
+    { name: "Lai Châu", aliases: ["tinh lai chau"], position: { lat: 22.3954, lng: 103.4581 } },
+    { name: "Sơn La", aliases: ["tinh son la"], position: { lat: 21.3274, lng: 103.9183 } },
+    { name: "Hòa Bình", aliases: ["tinh hoa binh"], position: { lat: 20.8132, lng: 105.3372 } },
+    { name: "Phú Thọ", aliases: ["tinh phu tho"], position: { lat: 21.3459, lng: 105.2379 } },
+    { name: "Thái Nguyên", aliases: ["tinh thai nguyen"], position: { lat: 21.5942, lng: 105.8482 } },
+    { name: "Bắc Ninh", aliases: ["tinh bac ninh"], position: { lat: 21.1861, lng: 106.0763 } },
+    { name: "Hưng Yên", aliases: ["tinh hung yen"], position: { lat: 20.6464, lng: 106.0511 } },
+    { name: "Nam Định", aliases: ["tinh nam dinh"], position: { lat: 20.4388, lng: 106.1625 } },
+    { name: "Ninh Bình", aliases: ["tinh ninh binh"], position: { lat: 20.2506, lng: 105.974 } },
+    { name: "Thanh Hóa", aliases: ["tinh thanh hoa"], position: { lat: 19.8067, lng: 105.7769 } },
+    { name: "Bình Định", aliases: ["tinh binh dinh"], position: { lat: 14.1667, lng: 108.9026 } },
+    { name: "Quảng Nam", aliases: ["tinh quang nam"], position: { lat: 15.5394, lng: 108.0191 } },
+    { name: "Quảng Ngãi", aliases: ["tinh quang ngai"], position: { lat: 15.1205, lng: 108.804 } },
+    { name: "Phú Yên", aliases: ["tinh phu yen"], position: { lat: 13.0884, lng: 109.0929 } },
+    { name: "Đắk Lắk", aliases: ["tinh dak lak"], position: { lat: 12.7100, lng: 108.2378 } },
+    { name: "Gia Lai", aliases: ["tinh gia lai"], position: { lat: 13.8079, lng: 108.1093 } },
+    { name: "Bình Thuận", aliases: ["tinh binh thuan"], position: { lat: 11.0904, lng: 108.0721 } },
+    { name: "Đồng Nai", aliases: ["tinh dong nai"], position: { lat: 11.0686, lng: 107.1675 } },
+    { name: "Bà Rịa - Vũng Tàu", aliases: ["tinh ba ria vung tau", "vũng tàu"], position: { lat: 10.5415, lng: 107.2421 } },
+    { name: "Long An", aliases: ["tinh long an"], position: { lat: 10.6956, lng: 106.243 } },
+    { name: "Tiền Giang", aliases: ["tinh tien giang"], position: { lat: 10.4499, lng: 106.342 } },
+    { name: "An Giang", aliases: ["tinh an giang"], position: { lat: 10.3737, lng: 105.435 } },
+    { name: "Cà Mau", aliases: ["tinh ca mau"], position: { lat: 9.1767, lng: 105.1503 } },
+    { name: "Bạc Liêu", aliases: ["tinh bac lieu"], position: { lat: 9.2945, lng: 105.7244 } },
+    { name: "Bắc Giang", aliases: ["tinh bac giang"], position: { lat: 21.2733, lng: 106.194 } },
+    { name: "Vĩnh Phúc", aliases: ["tinh vinh phuc"], position: { lat: 21.3607, lng: 105.547 } },
+    { name: "Bắc Kạn", aliases: ["tinh bac kan"], position: { lat: 22.147, lng: 105.8345 } },
+    { name: "Tuyên Quang", aliases: ["tinh tuyen quang"], position: { lat: 21.8236, lng: 105.218 } },
+    { name: "Yên Bái", aliases: ["tinh yen bai"], position: { lat: 21.7195, lng: 104.911 } },
+    { name: "Điện Biên", aliases: ["tinh dien bien"], position: { lat: 21.3898, lng: 103.013 } },
+    { name: "Hà Tĩnh", aliases: ["tinh ha tinh"], position: { lat: 18.3428, lng: 105.905 } },
+    { name: "Quảng Trị", aliases: ["tinh quang tri"], position: { lat: 16.744, lng: 107.19 } },
+    { name: "Quảng Bình", aliases: ["tinh quang binh"], position: { lat: 17.4686, lng: 106.622 } },
+    { name: "Kon Tum", aliases: ["tinh kon tum"], position: { lat: 14.3491, lng: 108.0003 } },
+    { name: "Đắk Nông", aliases: ["tinh dak nong"], position: { lat: 12.0048, lng: 107.5774 } }
 ];
+
+const MAX_ROUNDS = 20;
 
 const elements = {
     setup: document.getElementById("setup-panel"),
@@ -93,7 +131,8 @@ async function getImages(position, accessToken) {
 }
 
 function updateProgress() {
-    elements.roundStatus.textContent = `Lượt ${Math.min(completedRounds + 1, 10)} / 10`;
+    const totalRounds = deck.length || MAX_ROUNDS;
+    elements.roundStatus.textContent = `Lượt ${Math.min(completedRounds + 1, totalRounds)} / ${totalRounds}`;
     elements.scoreStatus.textContent = `Điểm: ${score.toLocaleString("vi-VN")}`;
 }
 
@@ -104,7 +143,7 @@ async function showNextLocation() {
     locationLoadFailed = false;
     elements.gameMessage.textContent = "Đang tìm ảnh Mapillary...";
 
-    while (locationIndex < deck.length && completedRounds < 10) {
+    while (locationIndex < deck.length && completedRounds < deck.length) {
         currentLocation = deck[locationIndex];
         updateProgress();
 
@@ -171,7 +210,7 @@ function submitGuess(event) {
     elements.guessForm.hidden = true;
     elements.skipButton.hidden = true;
     elements.nextButton.hidden = false;
-    elements.nextButton.textContent = completedRounds >= 10 ? "Xem kết quả" : "Lượt tiếp theo";
+    elements.nextButton.textContent = completedRounds >= deck.length ? "Xem kết quả" : "Lượt tiếp theo";
     updateProgress();
 }
 
@@ -186,7 +225,7 @@ function skipLocation() {
     elements.guessForm.hidden = true;
     elements.skipButton.hidden = true;
     elements.nextButton.hidden = false;
-    elements.nextButton.textContent = completedRounds >= 10 ? "Xem kết quả" : "Lượt tiếp theo";
+    elements.nextButton.textContent = completedRounds >= deck.length ? "Xem kết quả" : "Lượt tiếp theo";
     updateProgress();
 }
 
@@ -221,7 +260,7 @@ async function startGame(accessToken, saveToken = true) {
         }
         elements.accessToken.value = accessToken;
         elements.changeToken.hidden = false;
-        deck = shuffle(locations);
+        deck = shuffle(locations).slice(0, Math.min(MAX_ROUNDS, locations.length));
         locationIndex = 0;
         completedRounds = 0;
         correctAnswers = 0;

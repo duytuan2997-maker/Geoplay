@@ -8,19 +8,25 @@ function quiz() {
     }
 }
 
+function toggleSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) {
+        return;
+    }
+
+    section.style.display = section.style.display === "none" ? "block" : "none";
+}
+
 function hienLop10() {
-    const ds = document.getElementById("lop10");
-    ds.style.display = ds.style.display === "none" ? "block" : "none";
+    toggleSection("lop10");
 }
 
 function hienLop11() {
-    const ds = document.getElementById("lop11");
-    ds.style.display = ds.style.display === "none" ? "block" : "none";
+    toggleSection("lop11");
 }
 
 function hienLop12() {
-    const ds = document.getElementById("lop12");
-    ds.style.display = ds.style.display === "none" ? "block" : "none";
+    toggleSection("lop12");
 }
 
 function shuffle(array) {
@@ -49,18 +55,22 @@ function splitMindMapDetails(text) {
     }
     parts.push(text.slice(start));
 
-    return parts.reduce(function (details, part) {
-        return details.concat(part.split(/\s+(?:và|hoặc)\s+/i));
-    }, []).map(function (detail) {
-        return detail.replace(/^[,;:\s]+|[.!?]+$/g, "").trim();
-    }).filter(function (detail) {
-        return detail.length > 2;
-    });
+    return parts
+        .reduce(function (details, part) {
+            return details.concat(part.split(/\s+(?:và|hoặc)\s+/i));
+        }, [])
+        .map(function (detail) {
+            return detail.replace(/^[,;:\s]+|[.!?]+$/g, "").trim();
+        })
+        .filter(function (detail) {
+            return detail.length > 2;
+        });
 }
 
 function getMindMapDetails(sentence) {
     const colonIndex = sentence.indexOf(":");
     let detailText = "";
+
     if (colonIndex >= 0) {
         detailText = sentence.slice(colonIndex + 1);
     } else if (sentence.indexOf(";") >= 0) {
@@ -86,13 +96,16 @@ function getMindMapDetails(sentence) {
     }
 
     const uniqueDetails = [];
+    const seen = new Set();
+
     details.forEach(function (detail) {
-        if (!uniqueDetails.some(function (existing) {
-            return existing.toLocaleLowerCase() === detail.toLocaleLowerCase();
-        })) {
+        const normalized = detail.toLocaleLowerCase();
+        if (!seen.has(normalized)) {
+            seen.add(normalized);
             uniqueDetails.push(detail);
         }
     });
+
     return uniqueDetails;
 }
 
@@ -122,6 +135,7 @@ function createLessonMindMap(title, sections) {
 
     const root = document.createElement("div");
     root.className = "mindmap-root";
+
     const rootIcon = document.createElement("span");
     rootIcon.className = "mindmap-root-icon";
     rootIcon.setAttribute("aria-hidden", "true");
@@ -135,6 +149,8 @@ function createLessonMindMap(title, sections) {
 
     const branches = document.createElement("div");
     branches.className = "mindmap-branches";
+
+    const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < sections.length; i += 2) {
         const branch = document.createElement("article");
@@ -161,7 +177,8 @@ function createLessonMindMap(title, sections) {
         branch.appendChild(branchHeader);
 
         const keyPoints = document.createElement("ul");
-        const sentences = sections[i + 1].split(/(?<=[.!?])\s+/).filter(Boolean);
+        const sentences = (sections[i + 1] || "").split(/(?<=[.!?])\s+/).filter(Boolean);
+
         sentences.forEach(function (sentence) {
             const point = document.createElement("li");
             point.className = "mindmap-concept";
@@ -184,6 +201,7 @@ function createLessonMindMap(title, sections) {
             if (details.length) {
                 const detailList = document.createElement("ul");
                 detailList.className = "mindmap-subpoints";
+
                 details.forEach(function (detail) {
                     const detailItem = document.createElement("li");
                     const detailIcon = document.createElement("span");
@@ -197,15 +215,18 @@ function createLessonMindMap(title, sections) {
                     detailItem.appendChild(detailText);
                     detailList.appendChild(detailItem);
                 });
+
                 point.appendChild(detailList);
             }
 
             keyPoints.appendChild(point);
         });
+
         branch.appendChild(keyPoints);
-        branches.appendChild(branch);
+        fragment.appendChild(branch);
     }
 
+    branches.appendChild(fragment);
     mindMap.appendChild(branches);
     mindMapSection.appendChild(mindMap);
     return mindMapSection;
