@@ -1,0 +1,3 @@
+window.MAPILLARY_CONFIG = {
+    accessToken: "MLY|28539770639034995|0f6be771321e45183daa3d096d21022f"
+};
