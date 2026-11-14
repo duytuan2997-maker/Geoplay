@@ -472,7 +472,7 @@ window.lessonContent = {
     "Cơ cấu kinh tế gồm cơ cấu ngành, cơ cấu thành phần kinh tế và cơ cấu lãnh thổ. Chuyển dịch cơ cấu kinh tế là sự thay đổi tỉ trọng giữa các bộ phận này trong quá trình phát triển.",
     "Xu hướng và ý nghĩa",
     "Tỉ trọng nông nghiệp giảm, công nghiệp và dịch vụ tăng; nền kinh tế nhiều thành phần tiếp tục phát triển và các vùng kinh tế chuyên môn hóa được hình thành. Quá trình này góp phần thúc đẩy công nghiệp hóa, nâng cao năng suất lao động và cải thiện đời sống nhân dân."
-]
+],
 [
 "Vấn đề phát triển ngành nông nghiệp","Nông nghiệp nước ta chuyển dịch theo hướng sản xuất hàng hóa, ứng dụng công nghệ cao và gắn với chuỗi giá trị, thích ứng với biến đổi khí hậu.",
 "Các ngành sản xuất chính","Trồng trọt chiếm tỉ trọng lớn với thế mạnh cây lương thực (ĐBSCL, ĐBSH) và cây công nghiệp, cây ăn quả. Chăn nuôi chuyển dịch theo hướng tập trung, ứng dụng công nghệ cao (lợn, gia cầm, gia súc lớn)."

@@ -233,6 +233,7 @@ async function startGame(accessToken, saveToken = true) {
         await showNextLocation();
     } catch (error) {
         elements.setupMessage.textContent = error.message;
+        elements.setupForm.hidden = false;
     } finally {
         elements.setupForm.querySelector("button").disabled = false;
     }
@@ -240,19 +241,19 @@ async function startGame(accessToken, saveToken = true) {
 
 async function loadConfiguredToken() {
     try {
-        const response = await fetch("/api/mapillary-config");
-        if (!response.ok) {
-            throw new Error(`Máy chủ trả về lỗi ${response.status}.`);
+        const config = window.MAPILLARY_CONFIG;
+        if (!config || typeof config.accessToken !== "string" ||
+            !config.accessToken.trim() || config.accessToken.includes("PASTE_MAPILLARY")) {
+            throw new Error("Chưa điền Client Access Token trong mapillary-config.js.");
         }
-        const config = await response.json();
-        if (typeof config.accessToken !== "string" || !config.accessToken.trim()) return;
 
         const accessToken = config.accessToken.trim();
         elements.accessToken.value = accessToken;
         await startGame(accessToken, false);
     } catch (error) {
+        elements.setupForm.hidden = false;
         elements.setupMessage.textContent =
-            `Không tải được token Mapillary dùng chung: ${error.message} Bạn vẫn có thể nhập token bên dưới.`;
+            `Chưa kết nối được token Mapillary dùng chung: ${error.message} Bạn vẫn có thể nhập token riêng bên dưới.`;
     }
 }
 
