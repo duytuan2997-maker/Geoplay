@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Thử thách đoán vị trí địa danh qua ảnh và bản đồ.">
+  <title>Thử Thách Nhanh - Đoán Vị Trí</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="thu-thach.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="thu-thach.js" defer></script>
+</head>
+<body>
+  <header class="challenge-header">
+    <a class="back-link" href="trochoi.html">← Danh sách trò chơi</a>
+    <h1>🧭 Thử Thách Đoán Vị Trí</h1>
+    <p>Nhìn ảnh địa điểm, ghim vị trí trên bản đồ và cố gắng đoán thật gần!</p>
+  </header>
+
+  <main class="challenge-main">
+    <section class="panel intro-panel" id="intro-panel">
+      <h2>Bạn có thể khám phá thế giới nhanh đến đâu?</h2>
+      <p>Nhìn ảnh địa danh, ghim vị trí trên bản đồ và cố gắng đoán thật gần — không cần API key.</p>
+      <p>10 lượt · 60 giây · tối đa 5.000 điểm mỗi lượt</p>
+      <button class="primary-button" id="start-button" type="button">Bắt đầu thử thách</button>
+      <a class="home-link" href="trochoi.html">Quay lại trang trò chơi</a>
+      <a class="home-link" href="index.html">Về trang chủ</a>
+    </section>
+
+    <section class="game-panel hide" id="game-panel" aria-live="polite">
+      <div class="game-status">
+        <span id="round-status">Lượt 1 / 10</span>
+        <span id="timer" role="timer">⏱️ 60 giây</span>
+        <span id="score-status">Điểm: 0</span>
+      </div>
+
+      <div class="game-layout">
+        <section class="photo-panel" aria-label="Ảnh địa điểm">
+          <img id="place-photo" alt="">
+          <p class="photo-credit" id="photo-credit"></p>
+        </section>
+
+        <section class="map-panel">
+          <p class="map-instructions" id="map-instructions">
+            Nhấp vào bản đồ để đặt ghim, sau đó chọn “Chốt vị trí”.
+          </p>
+          <div id="map" aria-label="Bản đồ thế giới để chọn vị trí"></div>
+          <div class="map-actions">
+            <button class="primary-button" id="guess-button" type="button" disabled>Chốt vị trí</button>
+            <button class="secondary-button hide" id="next-button" type="button">Địa điểm tiếp theo</button>
+          </div>
+          <p class="round-result" id="round-result" aria-live="polite"></p>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel result-panel hide" id="result-panel">
+      <h2>🏁 Kết thúc thử thách!</h2>
+      <p class="final-score" id="final-score"></p>
+      <p id="final-detail"></p>
+      <div class="xp-summary">
+        <p class="xp-earned" id="xp-earned"></p>
+        <p id="xp-progress-label"></p>
+        <div class="xp-progress" id="xp-progress" role="progressbar"
+          aria-label="Tiến độ kinh nghiệm" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="xp-progress-fill" id="xp-progress-fill"></div>
+        </div>
+        <p id="xp-level"></p>
+      </div>
+      <button class="primary-button" id="play-again-button" type="button">Chơi lại</button>
+      <a class="home-link" href="index.html">Về trang chủ</a>
+    </section>
+
+    <p class="map-attribution">
+      Bản đồ © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>.
+      Ảnh Wikimedia Commons; tác giả và giấy phép được ghi dưới mỗi ảnh.
+    </p>
+  </main>
+</body>
+</html>

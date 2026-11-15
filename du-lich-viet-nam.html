@@ -3,30 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Khám phá các điểm đến nổi bật ở miền Bắc, miền Trung và miền Nam Việt Nam.">
+    <meta name="description" content="Khám phá 50 điểm đến nổi bật ở miền Bắc, miền Trung và miền Nam Việt Nam.">
     <title>Du lịch Việt Nam</title>
     <link rel="stylesheet" href="style.css">
+    <script src="du-lich-viet-nam.js" defer></script>
 </head>
 <body>
         <header class="travel-header">
         <h1>🧳 Du lịch Việt Nam</h1>
-        <p>Khám phá cảnh đẹp, văn hóa và đặc sản đặc trưng của ba miền đất nước.</p>
+        <p>Khám phá 50 điểm đến nổi bật, từ núi rừng và di sản đến biển đảo Việt Nam.</p>
     </header>
 
     <main class="container">
+        <p class="travel-intro">Danh sách được chia theo ba miền để bạn dễ chọn hành trình.</p>
+
+        <section class="card random-destination" aria-labelledby="random-destination-title">
+            <h2 id="random-destination-title">🎲 Gợi ý điểm đến ngẫu nhiên</h2>
+            <p>Chưa biết đi đâu? Hãy để Geoplay chọn giúp bạn một điểm đến.</p>
+            <button id="random-destination-button" type="button">Chọn điểm đến</button>
+            <div id="random-destination-result" class="random-result" aria-live="polite"></div>
+        </section>
+
         <section class="card" aria-labelledby="north-title">
             <h2 id="north-title">🏔️ Miền Bắc</h2>
-            <p><strong>Hà Nội</strong> – phố cổ và di tích lịch sử; <strong>Hạ Long</strong> – vịnh biển với hàng nghìn đảo đá; <strong>Sa Pa</strong> – núi non và ruộng bậc thang.</p>
+            <ol class="destination-list" aria-label="17 điểm đến miền Bắc">
+                <li><strong>Hà Nội</strong> – phố cổ, hồ Hoàn Kiếm và những di tích lâu đời.</li>
+                <li><strong>Vịnh Hạ Long</strong> – quần thể đảo đá vôi và hành trình trên vịnh.</li>
+                <li><strong>Sa Pa</strong> – ruộng bậc thang, bản làng và đỉnh Fansipan.</li>
+                <li><strong>Cao nguyên đá Đồng Văn</strong> – cung đường đèo và cảnh quan đá đặc sắc.</li>
+                <li><strong>Quần thể danh thắng Tràng An</strong> – núi đá vôi, sông nước và hang động.</li>
+                <li><strong>Tam Cốc – Bích Động</strong> – dòng Ngô Đồng len giữa những dãy núi đá.</li>
+                <li><strong>Đảo Cát Bà và vịnh Lan Hạ</strong> – biển xanh, đảo nhỏ và vườn quốc gia.</li>
+                <li><strong>Thác Bản Giốc</strong> – thác nước hùng vĩ giữa núi rừng biên giới.</li>
+                <li><strong>Hồ Ba Bể</strong> – hồ nước ngọt giữa núi rừng và bản làng.</li>
+                <li><strong>Mù Cang Chải</strong> – những thửa ruộng bậc thang nổi tiếng.</li>
+                <li><strong>Mộc Châu</strong> – đồi chè, thung lũng và thác Dải Yếm.</li>
+                <li><strong>Mai Châu</strong> – thung lũng yên bình và văn hóa bản địa.</li>
+                <li><strong>Pù Luông</strong> – ruộng bậc thang, rừng và những bản làng vùng cao.</li>
+                <li><strong>Yên Tử</strong> – danh thắng núi rừng gắn với di sản Phật giáo.</li>
+                <li><strong>Tam Đảo</strong> – thị trấn nghỉ dưỡng giữa núi rừng mát mẻ.</li>
+                <li><strong>Cô Tô</strong> – quần đảo với bãi biển và cảnh quan nguyên sơ.</li>
+                <li><strong>Làng cổ Đường Lâm</strong> – nhà cổ, cổng làng và không gian làng Bắc Bộ.</li>
+            </ol>
         </section>
 
         <section class="card" aria-labelledby="central-title">
             <h2 id="central-title">🏖️ Miền Trung</h2>
-            <p><strong>Huế</strong> – cố đô và di sản cung đình; <strong>Đà Nẵng</strong> – thành phố biển năng động; <strong>Hội An</strong> – phố cổ giàu dấu ấn văn hóa.</p>
+            <ol class="destination-list" start="18" aria-label="17 điểm đến miền Trung">
+                <li><strong>Cố đô Huế</strong> – kinh thành, lăng tẩm và di sản cung đình.</li>
+                <li><strong>Phố cổ Hội An</strong> – kiến trúc cổ, đèn lồng và nét giao thoa văn hóa.</li>
+                <li><strong>Đà Nẵng</strong> – thành phố biển với bán đảo Sơn Trà và bãi biển Mỹ Khê.</li>
+                <li><strong>Bà Nà Hills</strong> – Cầu Vàng và tuyến cáp treo giữa núi rừng.</li>
+                <li><strong>Vườn quốc gia Phong Nha – Kẻ Bàng</strong> – hệ thống núi đá vôi và hang động.</li>
+                <li><strong>Hang Sơn Đoòng</strong> – hang động quy mô lớn giữa vùng Phong Nha.</li>
+                <li><strong>Thánh địa Mỹ Sơn</strong> – quần thể đền tháp Chăm cổ.</li>
+                <li><strong>Cù Lao Chàm</strong> – cụm đảo với bãi biển và hệ sinh thái biển.</li>
+                <li><strong>Đảo Lý Sơn</strong> – cảnh quan núi lửa, biển đảo và cánh đồng tỏi.</li>
+                <li><strong>Gành Đá Đĩa</strong> – ghềnh đá bazan có cấu trúc độc đáo bên bờ biển.</li>
+                <li><strong>Eo Gió</strong> – cung đường ven biển và vách núi nhìn ra biển.</li>
+                <li><strong>Nha Trang</strong> – vịnh biển, bãi tắm và các đảo gần bờ.</li>
+                <li><strong>Vịnh Vĩnh Hy</strong> – làn nước trong xanh và cảnh quan núi ven biển.</li>
+                <li><strong>Mũi Né</strong> – đồi cát, làng chài và bãi biển nhiều nắng.</li>
+                <li><strong>Đà Lạt</strong> – khí hậu cao nguyên, hồ và rừng thông.</li>
+                <li><strong>Măng Đen</strong> – rừng thông, hồ và thác nước giữa cao nguyên.</li>
+                <li><strong>Thác Dray Nur</strong> – dòng thác lớn giữa không gian núi rừng Tây Nguyên.</li>
+            </ol>
         </section>
 
         <section class="card" aria-labelledby="south-title">
             <h2 id="south-title">🌴 Miền Nam</h2>
-            <p><strong>TP. Hồ Chí Minh</strong> – nhịp sống đô thị sôi động; <strong>Cần Thơ</strong> – chợ nổi và miệt vườn; <strong>Phú Quốc</strong> – biển đảo và những bãi cát đẹp.</p>
+            <ol class="destination-list" start="35" aria-label="16 điểm đến miền Nam">
+                <li><strong>TP. Hồ Chí Minh</strong> – đô thị sôi động với nhiều công trình lịch sử và văn hóa.</li>
+                <li><strong>Vũng Tàu</strong> – thành phố biển với bãi tắm và các điểm ngắm cảnh.</li>
+                <li><strong>Hồ Tràm</strong> – bãi biển dài bên rừng và khu bảo tồn ven biển.</li>
+                <li><strong>Côn Đảo</strong> – biển đảo, vườn quốc gia và các di tích lịch sử.</li>
+                <li><strong>Phú Quốc</strong> – đảo lớn với bãi biển, rừng và làng chài.</li>
+                <li><strong>Chợ nổi Cái Răng</strong> – nét sinh hoạt thương hồ đặc trưng trên sông.</li>
+                <li><strong>Rừng tràm Trà Sư</strong> – rừng ngập nước và tuyến tham quan bằng xuồng.</li>
+                <li><strong>Núi Sam</strong> – cụm danh thắng và điểm hành hương nổi tiếng.</li>
+                <li><strong>Vườn quốc gia Tràm Chim</strong> – vùng đất ngập nước với nhiều loài chim.</li>
+                <li><strong>Cồn Phụng</strong> – miệt vườn, sông nước và trải nghiệm văn hóa xứ dừa.</li>
+                <li><strong>Ao Bà Om</strong> – thắng cảnh gắn với văn hóa Khmer Nam Bộ.</li>
+                <li><strong>Mũi Cà Mau</strong> – điểm cực Nam trên đất liền và rừng ngập mặn.</li>
+                <li><strong>Rừng U Minh Hạ</strong> – hệ sinh thái rừng tràm và đất than bùn.</li>
+                <li><strong>Núi Bà Đen</strong> – danh thắng núi cao với tuyến cáp treo và quần thể tâm linh.</li>
+                <li><strong>Khu dự trữ sinh quyển Cần Giờ</strong> – rừng ngập mặn và hệ sinh thái ven biển.</li>
+                <li><strong>Hồ Dầu Tiếng</strong> – hồ nước rộng với cảnh quan thoáng đãng.</li>
+            </ol>
         </section>
 
         <button type="button" onclick="window.location.href='index.html'">← Về trang chủ</button>

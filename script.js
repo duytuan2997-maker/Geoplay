@@ -109,127 +109,134 @@ function getMindMapDetails(sentence) {
     return uniqueDetails;
 }
 
+function createElement(tagName, className, textContent, ariaHidden) {
+    const element = document.createElement(tagName);
+    if (className) element.className = className;
+    if (textContent !== undefined) element.textContent = textContent;
+    if (ariaHidden) element.setAttribute("aria-hidden", "true");
+    return element;
+}
+
+function createMindMapPoint(sentence) {
+    const point = createElement("li", "mindmap-concept");
+    const pointRow = createElement("div", "mindmap-point-row");
+    pointRow.appendChild(createElement("span", "mindmap-point-icon", "✦", true));
+    pointRow.appendChild(createElement("span", "", sentence.trim()));
+    point.appendChild(pointRow);
+
+    const details = getMindMapDetails(sentence);
+    if (details.length) {
+        const detailList = createElement("ul", "mindmap-subpoints");
+        details.forEach(function (detail) {
+            const detailItem = createElement("li");
+            detailItem.appendChild(createElement("span", "mindmap-subpoint-icon", "•", true));
+            detailItem.appendChild(createElement("span", "", detail));
+            detailList.appendChild(detailItem);
+        });
+        point.appendChild(detailList);
+    }
+
+    return point;
+}
+
+function createMindMapBranch(title, content, index) {
+    const branch = createElement("article", "mindmap-branch");
+    const header = createElement("div", "mindmap-branch-header");
+    header.appendChild(createElement("span", "mindmap-branch-number", String(index + 1).padStart(2, "0"), true));
+    header.appendChild(createElement("span", "mindmap-branch-icon", index === 0 ? "🔎" : "📍", true));
+    header.appendChild(createElement("h4", "", title));
+    branch.appendChild(header);
+
+    const keyPoints = createElement("ul");
+    content.split(/(?<=[.!?])\s+/).filter(Boolean).forEach(function (sentence) {
+        keyPoints.appendChild(createMindMapPoint(sentence));
+    });
+    branch.appendChild(keyPoints);
+    return branch;
+}
+
 function createLessonMindMap(title, sections) {
-    const mindMapSection = document.createElement("section");
-    mindMapSection.className = "lesson-mindmap-section";
+    const mindMapSection = createElement("section", "lesson-mindmap-section");
     mindMapSection.setAttribute("aria-label", "Sơ đồ tư duy " + title);
 
     ["top-left", "top-right", "bottom-left", "bottom-right"].forEach(function (corner) {
-        const flowerCorner = document.createElement("span");
-        flowerCorner.className = "mindmap-flower-corner mindmap-flower-corner--" + corner;
-        flowerCorner.setAttribute("aria-hidden", "true");
-        mindMapSection.appendChild(flowerCorner);
+        mindMapSection.appendChild(createElement(
+            "span",
+            "mindmap-flower-corner mindmap-flower-corner--" + corner,
+            undefined,
+            true
+        ));
     });
+    mindMapSection.appendChild(createElement("h3", "", "🧠 Sơ đồ tư duy"));
+    mindMapSection.appendChild(createElement("p", "mindmap-intro", "Nhìn nhanh các ý chính của bài học"));
 
-    const heading = document.createElement("h3");
-    heading.textContent = "🧠 Sơ đồ tư duy";
-    mindMapSection.appendChild(heading);
-
-    const intro = document.createElement("p");
-    intro.className = "mindmap-intro";
-    intro.textContent = "Nhìn nhanh các ý chính của bài học";
-    mindMapSection.appendChild(intro);
-
-    const mindMap = document.createElement("div");
-    mindMap.className = "lesson-mindmap";
-
-    const root = document.createElement("div");
-    root.className = "mindmap-root";
-
-    const rootIcon = document.createElement("span");
-    rootIcon.className = "mindmap-root-icon";
-    rootIcon.setAttribute("aria-hidden", "true");
-    rootIcon.textContent = "🌏";
-    root.appendChild(rootIcon);
-
-    const rootLabel = document.createElement("span");
-    rootLabel.textContent = title;
-    root.appendChild(rootLabel);
+    const mindMap = createElement("div", "lesson-mindmap");
+    const root = createElement("div", "mindmap-root");
+    root.appendChild(createElement("span", "mindmap-root-icon", "🌏", true));
+    root.appendChild(createElement("span", "", title));
     mindMap.appendChild(root);
 
-    const branches = document.createElement("div");
-    branches.className = "mindmap-branches";
-
+    const branches = createElement("div", "mindmap-branches");
     const fragment = document.createDocumentFragment();
-
     for (let i = 0; i < sections.length; i += 2) {
-        const branch = document.createElement("article");
-        branch.className = "mindmap-branch";
-
-        const branchHeader = document.createElement("div");
-        branchHeader.className = "mindmap-branch-header";
-
-        const branchNumber = document.createElement("span");
-        branchNumber.className = "mindmap-branch-number";
-        branchNumber.setAttribute("aria-hidden", "true");
-        branchNumber.textContent = String(i / 2 + 1).padStart(2, "0");
-        branchHeader.appendChild(branchNumber);
-
-        const branchIcon = document.createElement("span");
-        branchIcon.className = "mindmap-branch-icon";
-        branchIcon.setAttribute("aria-hidden", "true");
-        branchIcon.textContent = i === 0 ? "🔎" : "📍";
-        branchHeader.appendChild(branchIcon);
-
-        const branchHeading = document.createElement("h4");
-        branchHeading.textContent = sections[i];
-        branchHeader.appendChild(branchHeading);
-        branch.appendChild(branchHeader);
-
-        const keyPoints = document.createElement("ul");
-        const sentences = (sections[i + 1] || "").split(/(?<=[.!?])\s+/).filter(Boolean);
-
-        sentences.forEach(function (sentence) {
-            const point = document.createElement("li");
-            point.className = "mindmap-concept";
-
-            const pointRow = document.createElement("div");
-            pointRow.className = "mindmap-point-row";
-
-            const pointIcon = document.createElement("span");
-            pointIcon.className = "mindmap-point-icon";
-            pointIcon.setAttribute("aria-hidden", "true");
-            pointIcon.textContent = "✦";
-            pointRow.appendChild(pointIcon);
-
-            const pointText = document.createElement("span");
-            pointText.textContent = sentence.trim();
-            pointRow.appendChild(pointText);
-            point.appendChild(pointRow);
-
-            const details = getMindMapDetails(sentence);
-            if (details.length) {
-                const detailList = document.createElement("ul");
-                detailList.className = "mindmap-subpoints";
-
-                details.forEach(function (detail) {
-                    const detailItem = document.createElement("li");
-                    const detailIcon = document.createElement("span");
-                    detailIcon.className = "mindmap-subpoint-icon";
-                    detailIcon.setAttribute("aria-hidden", "true");
-                    detailIcon.textContent = "•";
-                    detailItem.appendChild(detailIcon);
-
-                    const detailText = document.createElement("span");
-                    detailText.textContent = detail;
-                    detailItem.appendChild(detailText);
-                    detailList.appendChild(detailItem);
-                });
-
-                point.appendChild(detailList);
-            }
-
-            keyPoints.appendChild(point);
-        });
-
-        branch.appendChild(keyPoints);
-        fragment.appendChild(branch);
+        fragment.appendChild(createMindMapBranch(sections[i], sections[i + 1] || "", i / 2));
     }
-
     branches.appendChild(fragment);
     mindMap.appendChild(branches);
     mindMapSection.appendChild(mindMap);
     return mindMapSection;
+}
+
+function createLessonDetails(title, videoUrl, sections) {
+    const panel = createElement("section", "lesson-details");
+    panel.appendChild(createElement("h3", "", "🎬 Video bài học"));
+
+    if (videoUrl) {
+        const videoFrame = createElement("iframe");
+        videoFrame.src = videoUrl;
+        videoFrame.title = "Video " + title;
+        videoFrame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        videoFrame.allowFullscreen = true;
+        panel.appendChild(videoFrame);
+    } else {
+        panel.appendChild(createElement(
+            "p",
+            "",
+            "Chưa có video nhúng cho bài này. Bạn có thể tìm video phù hợp trên YouTube:"
+        ));
+        const videoLink = createElement("a", "", "Tìm video bài học trên YouTube");
+        videoLink.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(title + " Địa lí");
+        videoLink.target = "_blank";
+        videoLink.rel = "noopener noreferrer";
+        panel.appendChild(videoLink);
+    }
+
+    panel.appendChild(createElement("h3", "", "📖 Bài giảng chi tiết"));
+    if (sections) {
+        for (let i = 0; i < sections.length; i += 2) {
+            panel.appendChild(createElement("h4", "", sections[i]));
+            panel.appendChild(createElement("p", "", sections[i + 1] || ""));
+        }
+    } else {
+        panel.appendChild(createElement("p", "", "Nội dung bài học này chưa được cập nhật."));
+    }
+
+    const mindMapSections = sections || [
+        "Chủ đề bài học",
+        "Bài học đang được bổ sung nội dung chi tiết.",
+        "Gợi ý ôn tập",
+        "Hãy ghi lại khái niệm, đặc điểm và ví dụ quan trọng của chủ đề này."
+    ];
+    panel.appendChild(createLessonMindMap(title, mindMapSections));
+    return panel;
+}
+
+function removeLessonDetails(lesson) {
+    const panel = lesson.nextElementSibling;
+    if (panel && panel.classList.contains("lesson-details")) {
+        panel.remove();
+    }
+    lesson.setAttribute("aria-expanded", "false");
 }
 
 let xp = Number(localStorage.getItem("xp")) || 0;
@@ -293,6 +300,8 @@ if (gameAvatarImage && gameAvatarInitial) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const lessons = document.querySelectorAll(".lesson");
+    const lessonContentByElement = new WeakMap();
+    const lessonGroups = new Map();
     let activeLesson = null;
 
     lessons.forEach(function (lesson) {
@@ -300,100 +309,59 @@ document.addEventListener("DOMContentLoaded", function () {
         lesson.setAttribute("tabindex", "0");
         lesson.setAttribute("aria-expanded", "false");
 
-        function toggleLesson() {
-            if (activeLesson === lesson) {
-                const openPanel = lesson.nextElementSibling;
-                if (openPanel && openPanel.classList.contains("lesson-details")) {
-                    openPanel.remove();
-                }
-                lesson.setAttribute("aria-expanded", "false");
-                activeLesson = null;
-                return;
-            }
+        const group = lesson.closest("#lop10, #lop11, #lop12");
+        if (group && !lessonGroups.has(group)) {
+            lessonGroups.set(group, Array.from(group.querySelectorAll(".lesson")));
+        }
+    });
 
-            if (activeLesson) {
-                const previousPanel = activeLesson.nextElementSibling;
-                if (previousPanel && previousPanel.classList.contains("lesson-details")) {
-                    previousPanel.remove();
-                }
-                activeLesson.setAttribute("aria-expanded", "false");
-            }
+    lessonGroups.forEach(function (groupLessons, group) {
+        groupLessons.forEach(function (lesson, index) {
+            lessonContentByElement.set(lesson, window.lessonContent?.[group.id]?.[index]);
+        });
+    });
 
-            const title = lesson.textContent.trim().replace(/^.*?(Bài\s+\d+\s*:)/, "$1");
-            const lessonGroup = lesson.closest("#lop10, #lop11, #lop12");
-            const lessonIndex = lessonGroup
-                ? Array.from(lessonGroup.querySelectorAll(".lesson")).indexOf(lesson)
-                : -1;
-            const sections = lessonGroup && window.lessonContent
-                ? window.lessonContent[lessonGroup.id]?.[lessonIndex]
-                : null;
-            const panel = document.createElement("section");
-            panel.className = "lesson-details";
-
-            const videoHeading = document.createElement("h3");
-            videoHeading.textContent = "🎬 Video bài học";
-            panel.appendChild(videoHeading);
-
-            const videoUrl = lesson.dataset.videoUrl;
-            if (videoUrl) {
-                const videoFrame = document.createElement("iframe");
-                videoFrame.src = videoUrl;
-                videoFrame.title = "Video " + title;
-                videoFrame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-                videoFrame.allowFullscreen = true;
-                panel.appendChild(videoFrame);
-            } else {
-                const videoNote = document.createElement("p");
-                videoNote.textContent = "Chưa có video nhúng cho bài này. Bạn có thể tìm video phù hợp trên YouTube:";
-                panel.appendChild(videoNote);
-
-                const videoLink = document.createElement("a");
-                videoLink.href = "https://www.youtube.com/results?search_query=" + encodeURIComponent(title + " Địa lí");
-                videoLink.target = "_blank";
-                videoLink.rel = "noopener noreferrer";
-                videoLink.textContent = "Tìm video bài học trên YouTube";
-                panel.appendChild(videoLink);
-            }
-
-            const lessonHeading = document.createElement("h3");
-            lessonHeading.textContent = "📖 Bài giảng chi tiết";
-            panel.appendChild(lessonHeading);
-
-            if (sections) {
-                for (let i = 0; i < sections.length; i += 2) {
-                    const sectionHeading = document.createElement("h4");
-                    sectionHeading.textContent = sections[i];
-                    panel.appendChild(sectionHeading);
-
-                    const paragraph = document.createElement("p");
-                    paragraph.textContent = sections[i + 1];
-                    panel.appendChild(paragraph);
-                }
-            } else {
-                const unavailable = document.createElement("p");
-                unavailable.textContent = "Nội dung bài học này chưa được cập nhật.";
-                panel.appendChild(unavailable);
-            }
-
-            const mindMapSections = sections || [
-                "Chủ đề bài học",
-                "Bài học đang được bổ sung nội dung chi tiết.",
-                "Gợi ý ôn tập",
-                "Hãy ghi lại khái niệm, đặc điểm và ví dụ quan trọng của chủ đề này."
-            ];
-            panel.appendChild(createLessonMindMap(title, mindMapSections));
-
-            lesson.insertAdjacentElement("afterend", panel);
-            lesson.setAttribute("aria-expanded", "true");
-            activeLesson = lesson;
+    function toggleLesson(lesson) {
+        if (activeLesson === lesson) {
+            removeLessonDetails(lesson);
+            activeLesson = null;
+            return;
         }
 
-        lesson.addEventListener("click", toggleLesson);
-        lesson.addEventListener("keydown", function (event) {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                toggleLesson();
-            }
-        });
+        if (activeLesson) {
+            removeLessonDetails(activeLesson);
+        }
+
+        const title = lesson.textContent.trim().replace(/^.*?(Bài\s+\d+\s*:)/, "$1");
+        const panel = createLessonDetails(
+            title,
+            lesson.dataset.videoUrl,
+            lessonContentByElement.get(lesson)
+        );
+        lesson.insertAdjacentElement("afterend", panel);
+        lesson.setAttribute("aria-expanded", "true");
+        activeLesson = lesson;
+    }
+
+    function getLessonFromEvent(event) {
+        return event.target instanceof Element ? event.target.closest(".lesson") : null;
+    }
+
+    document.addEventListener("click", function (event) {
+        const lesson = getLessonFromEvent(event);
+        if (lesson) {
+            toggleLesson(lesson);
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key !== "Enter" && event.key !== " ") {
+            return;
+        }
+        const lesson = getLessonFromEvent(event);
+        if (lesson) {
+            event.preventDefault();
+            toggleLesson(lesson);
+        }
     });
 });
