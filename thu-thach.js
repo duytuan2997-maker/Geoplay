@@ -628,6 +628,7 @@ function finishGame(timeExpired) {
   const levelAfter = Math.floor(xpAfter / 100) + 1;
   const levelProgress = xpAfter % 100;
   localStorage.setItem("xp", xpAfter);
+  window.dispatchEvent(new Event("accountstatschange"));
 
   elements.game.classList.add("hide");
   elements.results.classList.remove("hide");

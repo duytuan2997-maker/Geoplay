@@ -211,6 +211,7 @@ class Game {
     if (!this.hasAwardedXP) {
       localStorage.setItem('xp', xpAfter);
       this.hasAwardedXP = true;
+      window.dispatchEvent(new Event('accountstatschange'));
     }
 
     this.DOM.play.classList.add('hide');

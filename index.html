@@ -19,6 +19,7 @@
                 <a class="active" href="#home">TRANG CHỦ</a>
                 <a href="#courses">BÀI HỌC</a>
                 <a href="#games">TRÒ CHƠI</a>
+                <a href="leaderboard.html">XẾP HẠNG</a>
                 <a href="#travel">DU LỊCH</a>
             </div>
             <span class="hero-language" aria-label="Ngôn ngữ: Tiếng Việt">VI</span>
@@ -46,6 +47,10 @@
                         <span id="account-avatar-initial" aria-hidden="true">?</span>
                         <img id="account-avatar-image" alt="" hidden>
                         <span class="avatar-change-hint" aria-hidden="true">Đổi ảnh</span>
+                    </button>
+                    <button id="account-chat-open" class="account-chat-button" type="button" aria-label="Mở kênh chat">
+                        <span aria-hidden="true">💬</span>
+                        <span>Chat</span>
                     </button>
                     <input id="account-avatar-input" class="account-avatar-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
                 </div>
@@ -77,6 +82,29 @@
             <button id="account-submit" class="account-submit" type="submit">Đăng nhập</button>
         </form>
         <button id="account-mode" class="account-mode" type="button">Chưa có tài khoản? Tạo tài khoản</button>
+    </dialog>
+
+    <dialog id="chat-dialog" class="chat-dialog" aria-labelledby="chat-room-title">
+        <section class="chat-card" aria-label="Phòng chat chung">
+            <div class="chat-room-heading">
+                <div>
+                    <h2 id="chat-room-title">💬 Phòng chung</h2>
+                    <p>Tin nhắn được chia sẻ với mọi người trong Geoplay.</p>
+                </div>
+                <div class="chat-room-actions">
+                    <span class="chat-room-indicator">KÊNH CÔNG KHAI</span>
+                    <button id="chat-close" class="chat-close" type="button" aria-label="Đóng kênh chat">×</button>
+                </div>
+            </div>
+            <p id="chat-status" class="chat-status" role="status" aria-live="polite">Đang kết nối...</p>
+            <ol id="chat-messages" class="chat-messages" role="log" aria-label="Tin nhắn trong phòng chung" aria-live="polite"></ol>
+            <form id="chat-form" class="chat-form">
+                <label class="chat-visually-hidden" for="chat-message-input">Tin nhắn</label>
+                <textarea id="chat-message-input" name="message" rows="2" maxlength="500" placeholder="Viết tin nhắn..." required disabled></textarea>
+                <button id="chat-send" type="submit" disabled>Gửi</button>
+            </form>
+            <p class="chat-note">Tối đa 500 ký tự mỗi tin nhắn. Hãy giao tiếp văn minh nhé!</p>
+        </section>
     </dialog>
 
     <main>
@@ -311,7 +339,10 @@
     </div>
 
     <script src="supabase-config.js"></script>
+    <script src="supabase-client.js"></script>
+    <script src="leaderboard.js"></script>
     <script src="auth.js"></script>
+    <script src="chat.js"></script>
     <script src="earth-globe.js"></script>
     </main>
 </body>

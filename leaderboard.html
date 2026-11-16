@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bảng xếp hạng cấp độ người chơi Geoplay.">
+    <title>Bảng xếp hạng - Geoplay</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="leaderboard-page-header">
+        <a class="leaderboard-back" href="index.html">← Về trang chủ</a>
+        <p class="leaderboard-kicker">CỘNG ĐỒNG GEOPLAY</p>
+        <h1>🏆 Bảng xếp hạng</h1>
+        <p>Thi đua khám phá và chinh phục cấp độ cao nhất.</p>
+    </header>
+
+    <main class="leaderboard-page-main">
+        <section id="leaderboard" class="leaderboard-card" aria-labelledby="leaderboard-title">
+            <div class="leaderboard-heading">
+                <div>
+                    <p class="leaderboard-kicker">TOP 10 NGƯỜI CHƠI</p>
+                    <h2 id="leaderboard-title">Nhà khám phá xuất sắc</h2>
+                    <p>Xếp hạng theo tổng kinh nghiệm tích lũy.</p>
+                </div>
+                <span class="leaderboard-trophy" aria-hidden="true">🌍</span>
+            </div>
+            <p id="leaderboard-status" class="leaderboard-status" role="status" aria-live="polite">Đang tải bảng xếp hạng...</p>
+            <div class="leaderboard-table-wrap">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Hạng</th>
+                            <th scope="col">Nhà khám phá</th>
+                            <th scope="col">Cấp độ · XP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-rows"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="supabase-config.js"></script>
+    <script src="supabase-client.js"></script>
+    <script src="leaderboard.js"></script>
+</body>
+</html>

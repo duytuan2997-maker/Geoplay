@@ -273,6 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!session) throw new Error("Supabase không trả về phiên đăng nhập. Hãy xác nhận email rồi thử đăng nhập.");
             saveSession(session);
             showUser(getUserFromResponse(result));
+            window.dispatchEvent(new Event("authsessionchange"));
             dialog.close();
             form.reset();
             setMode("login");
@@ -352,6 +353,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!session) return;
             const user = await supabaseRequest("user", { accessToken: session.access_token });
             showUser(user);
+            window.dispatchEvent(new Event("authsessionchange"));
         } catch (error) {
             if (error.status === 401) clearSession();
             console.error("Không thể khôi phục phiên Supabase:", error);
