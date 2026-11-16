@@ -29,11 +29,33 @@ document.addEventListener("DOMContentLoaded", function () {
             "Không thể kết nối kênh chat. Hãy kiểm tra cấu hình Supabase và chạy supabase-chat.sql.";
     }
 
+    function getSafeAvatar(avatar) {
+        if (typeof avatar !== "string" || avatar.length > 140000 ||
+            !/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(avatar)) {
+            return "";
+        }
+        return avatar;
+    }
+
     function appendMessage(message) {
         const item = document.createElement("li");
         item.className = "chat-message";
         if (message.user_id === chatUser.id) item.classList.add("chat-message-own");
 
+        const avatar = document.createElement("span");
+        avatar.className = "chat-message-avatar";
+        const avatarUrl = getSafeAvatar(message.avatar);
+        if (avatarUrl) {
+            const image = document.createElement("img");
+            image.src = avatarUrl;
+            image.alt = "";
+            avatar.appendChild(image);
+        } else {
+            avatar.textContent = message.username.trim().charAt(0).toLocaleUpperCase("vi-VN") || "?";
+        }
+
+        const body = document.createElement("div");
+        body.className = "chat-message-body";
         const heading = document.createElement("div");
         heading.className = "chat-message-heading";
         const username = document.createElement("strong");
@@ -49,7 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const content = document.createElement("p");
         content.textContent = message.content;
-        item.append(heading, content);
+        body.append(heading, content);
+        item.append(avatar, body);
         messagesElement.appendChild(item);
     }
 
@@ -65,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const wasAtBottom = messagesElement.scrollHeight - messagesElement.scrollTop -
                 messagesElement.clientHeight < 48;
             const messages = await supabase.dataRequest(
-                "chat_messages?select=id,user_id,username,content,created_at&order=created_at.desc&limit=100",
+                "chat_messages?select=id,user_id,username,avatar,content,created_at&order=created_at.desc&limit=100",
                 { session: session }
             );
             messagesElement.replaceChildren();
@@ -94,6 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: {
                     user_id: chatUser.id,
                     username: chatUser.username,
+                    avatar: chatUser.avatar,
                     content: content
                 }
             });
@@ -125,7 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 id: user.id,
                 username: (typeof metadataUsername === "string" && metadataUsername.trim()
                     ? metadataUsername
-                    : emailUsername || "Học viên").trim().slice(0, 32)
+                    : emailUsername || "Học viên").trim().slice(0, 32),
+                avatar: getSafeAvatar(user.user_metadata && user.user_metadata.avatar)
             };
             input.disabled = false;
             sendButton.disabled = false;
@@ -138,12 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     openButton.addEventListener("click", function () {
         dialog.showModal();
-        if (chatUser) {
-            loadMessages();
-            startPolling();
-        } else {
-            startChat();
-        }
+        startChat();
     });
 
     closeButton.addEventListener("click", function () {
