@@ -20,6 +20,15 @@ alter table public.chat_messages add column if not exists avatar text
         )
     );
 
+update public.chat_messages as messages
+set avatar = users.raw_user_meta_data ->> 'avatar'
+from auth.users as users
+where messages.user_id = users.id
+    and messages.avatar is null
+    and length(users.raw_user_meta_data ->> 'avatar') <= 140000
+    and users.raw_user_meta_data ->> 'avatar' ~
+        '^data:image/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$';
+
 create index if not exists chat_messages_created_at
     on public.chat_messages (created_at desc);
 

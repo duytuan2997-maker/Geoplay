@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function getSafeAvatar(avatar) {
         if (typeof avatar !== "string" || avatar.length > 140000 ||
             !/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(avatar)) {
-            return "";
+            return null;
         }
         return avatar;
     }
