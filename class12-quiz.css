@@ -1,0 +1,130 @@
+.class12-quiz-form {
+    display: grid;
+    gap: 24px;
+}
+
+.quiz-topic > h2 {
+    margin: 0 0 16px;
+    color: #286c4d;
+    font-size: 21px;
+}
+
+.quiz-context-group {
+    margin: 20px 0;
+}
+
+.quiz-context {
+    margin: 0 0 12px;
+    padding: 14px 16px;
+    border-left: 4px solid #8eb69a;
+    border-radius: 6px;
+    color: #53645a;
+    background: #f3f8f3;
+    line-height: 1.65;
+}
+
+.quiz-question {
+    min-width: 0;
+    margin: 12px 0;
+    padding: 16px;
+    border: 1px solid #e1e9e2;
+    border-radius: 12px;
+}
+
+.quiz-question legend {
+    padding: 0 5px;
+    color: #293d30;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 7px 0;
+    padding: 10px 12px;
+    border: 1px solid #edf0ed;
+    border-radius: 8px;
+    color: #405247;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.quiz-option:hover {
+    background: #f6faf6;
+}
+
+.quiz-option input {
+    flex: 0 0 auto;
+    margin-top: 4px;
+    accent-color: #32764f;
+}
+
+.quiz-short-answer-label {
+    display: grid;
+    gap: 8px;
+    max-width: 360px;
+    margin-top: 10px;
+    color: #53645a;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.quiz-short-answer-input {
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #d5ded7;
+    border-radius: 8px;
+    color: #26352b;
+    font: inherit;
+}
+
+.quiz-short-answer-input:focus {
+    border-color: #32764f;
+    outline: 3px solid rgba(50, 118, 79, .14);
+}
+
+.quiz-question.is-correct {
+    border-color: #7fbd8b;
+    background: #f4fbf4;
+}
+
+.quiz-question.is-incorrect {
+    border-color: #e3a09b;
+    background: #fff8f7;
+}
+
+.quiz-answer-feedback {
+    margin: 12px 0 0;
+    color: #32764f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.quiz-reward {
+    margin: 12px 0;
+    color: #32764f;
+    font-weight: 700;
+}
+
+.quiz-unavailable {
+    max-width: 620px;
+    margin: 36px auto;
+    color: #53645a;
+    line-height: 1.7;
+}
+
+.class12-quiz-form > .primary-button {
+    justify-self: start;
+}
+
+@media (max-width: 600px) {
+    .quiz-question {
+        padding: 12px;
+    }
+
+    .quiz-option {
+        padding: 9px;
+    }
+}

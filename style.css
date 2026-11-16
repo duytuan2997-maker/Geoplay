@@ -424,6 +424,29 @@ button:hover{
     border-radius:10px;
 }
 
+.lesson-details a.lesson-quiz-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:44px;
+    margin-top:22px;
+    padding:11px 18px;
+    border-radius:9px;
+    color:#fff;
+    background:#32764f;
+    font-weight:700;
+    text-decoration:none;
+}
+
+.lesson-quiz-button:hover{
+    background:#245d3c;
+}
+
+.lesson-quiz-button:focus-visible{
+    outline:3px solid #4b9563;
+    outline-offset:3px;
+}
+
 .lesson-mindmap-section{
     position:relative;
     isolation:isolate;
@@ -2000,7 +2023,7 @@ body{
 .chat-message-body{
     max-width:calc(100% - 45px);
     min-width:0;
-    padding:10px 13px;
+    padding:6px 9px;
     border:1px solid rgba(49,104,75,.12);
     border-radius:14px 14px 14px 4px;
     background:#fff;

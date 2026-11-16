@@ -287,6 +287,12 @@ body {
     text-align: center;
 }
 
+.geo-coin-reward {
+    margin: 12px 0;
+    color: #32764f;
+    font-weight: 700;
+}
+
 .result-panel .setup-icon {
     margin: auto;
 }

@@ -459,7 +459,8 @@ const elements = {
   xpProgressLabel: document.querySelector("#xp-progress-label"),
   xpProgress: document.querySelector("#xp-progress"),
   xpProgressFill: document.querySelector("#xp-progress-fill"),
-  xpLevel: document.querySelector("#xp-level")
+  xpLevel: document.querySelector("#xp-level"),
+  coinReward: document.querySelector("#geo-coin-reward")
 };
 
 const map = L.map("map", {
@@ -642,6 +643,11 @@ function finishGame(timeExpired) {
   elements.xpLevel.innerText = levelAfter > levelBefore
     ? `🎉 Lên cấp ${levelAfter}!`
     : `Cấp hiện tại: ${levelAfter}`;
+  window.geoplayGeoCoinRewards.announceCompletion(
+    "game:location-challenge",
+    elements.coinReward,
+    "trò chơi này"
+  );
 }
 
 function clearRoundMarkers() {

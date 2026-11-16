@@ -70,6 +70,7 @@ const elements = {
     results: document.getElementById("result-panel"),
     finalScore: document.getElementById("final-score"),
     finalDetail: document.getElementById("final-detail"),
+    coinReward: document.getElementById("geo-coin-reward"),
     playAgain: document.getElementById("play-again-button")
 };
 
@@ -235,6 +236,11 @@ function finishGame() {
     elements.results.hidden = false;
     elements.finalScore.textContent = `${score.toLocaleString("vi-VN")} điểm`;
     elements.finalDetail.textContent = `${correctAnswers} câu đúng · ${completedRounds} lượt đã chơi`;
+    window.geoplayGeoCoinRewards.announceCompletion(
+        "game:street-view",
+        elements.coinReward,
+        "trò chơi này"
+    );
 
     const xpEarned = correctAnswers * 5;
     if (xpEarned > 0) {

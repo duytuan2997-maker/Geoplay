@@ -164,6 +164,12 @@ button:disabled {
   font-weight: 700;
 }
 
+.geo-coin-reward {
+  margin: 1rem 0;
+  color: #218542;
+  font-weight: 700;
+}
+
 .xp-progress {
   height: 16px;
   overflow: hidden;

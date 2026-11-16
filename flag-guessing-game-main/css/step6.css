@@ -113,6 +113,7 @@ button.replay { width: 100%; font-size: 1.5rem; color: #333; }
   transition: width .6s ease;
 }
 .xp-level { color: #555; font-size: .9rem; }
+.geo-coin-reward { margin: 1rem 0; color: #23833a; font-size: 1rem; font-weight: bold; }
 button.wrong { background: crimson; border-color: darkred; color: #fff; box-shadow: 0 5px firebrick;  }
 button.correct { background: green; border-color: darkgreen; color: #fff; box-shadow: 0 5px darkgreen; }
 button.correct::before { animation: sparkle .5s ease-out forwards; }

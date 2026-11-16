@@ -25,6 +25,7 @@ class Game {
       xpProgress: document.querySelector('.xp-progress'),
       xpProgressFill: document.querySelector('.xp-progress-fill'),
       xpLevel: document.querySelector('.xp-level'),
+      coinReward: document.querySelector('.geo-coin-reward'),
       flagImage: document.querySelector('.flag-image'),
       flagFallback: document.querySelector('.flag-fallback'),
       answerButtons: document.querySelectorAll('.suggestions button'),
@@ -230,5 +231,10 @@ class Game {
     this.DOM.xpLevel.innerText = levelAfter > levelBefore
       ? `🎉 Lên cấp ${levelAfter}!`
       : `Cấp hiện tại: ${levelAfter}`;
+    window.geoplayGeoCoinRewards.announceCompletion(
+      'game:flag-guessing',
+      this.DOM.coinReward,
+      'trò chơi này'
+    );
   }
 }

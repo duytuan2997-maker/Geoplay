@@ -187,7 +187,28 @@ function createLessonMindMap(title, sections) {
     return mindMapSection;
 }
 
-function createLessonDetails(title, videoUrl, sections) {
+const grade12QuizIdsByTitle = {
+    "vị trí địa lí và phạm vi lãnh thổ": "bai-1",
+    "thiên nhiên nhiệt đới ẩm gió mùa": "bai-2",
+    "sự phân hóa đa dạng của thiên nhiên": "bai-3",
+    "sử dụng hợp lí tài nguyên thiên nhiên và bảo vệ môi trường": "bai-5",
+    "dân số việt nam": "bai-7",
+    "lao động và việc làm": "bai-8",
+    "đô thị hóa": "bai-9",
+    "đô thị hoá": "bai-9",
+    "phát triển ngành nông nghiệp": "bai-12"
+};
+
+function getGrade12QuizId(lesson) {
+    const lessonTitle = lesson.textContent
+        .trim()
+        .replace(/^.*?Bài\s+\d+\s*:\s*/, "")
+        .normalize("NFC")
+        .toLocaleLowerCase("vi");
+    return grade12QuizIdsByTitle[lessonTitle] || null;
+}
+
+function createLessonDetails(title, videoUrl, sections, quizId) {
     const panel = createElement("section", "lesson-details");
     panel.appendChild(createElement("h3", "", "🎬 Video bài học"));
 
@@ -228,6 +249,14 @@ function createLessonDetails(title, videoUrl, sections) {
         "Hãy ghi lại khái niệm, đặc điểm và ví dụ quan trọng của chủ đề này."
     ];
     panel.appendChild(createLessonMindMap(title, mindMapSections));
+
+    if (quizId) {
+        const quizLink = createElement("a", "lesson-quiz-button", "📝 Làm bài kiểm tra");
+        quizLink.href = "kiem-tra-dia-li-12.html?bai=" + encodeURIComponent(quizId);
+        quizLink.setAttribute("aria-label", "Làm bài kiểm tra: " + title);
+        panel.appendChild(quizLink);
+    }
+
     return panel;
 }
 
@@ -333,10 +362,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const title = lesson.textContent.trim().replace(/^.*?(Bài\s+\d+\s*:)/, "$1");
+        const lessonGroup = lesson.closest("#lop10, #lop11, #lop12");
+        const quizId = lessonGroup && lessonGroup.id === "lop12"
+            ? getGrade12QuizId(lesson)
+            : null;
         const panel = createLessonDetails(
             title,
             lesson.dataset.videoUrl,
-            lessonContentByElement.get(lesson)
+            lessonContentByElement.get(lesson),
+            quizId
         );
         lesson.insertAdjacentElement("afterend", panel);
         lesson.setAttribute("aria-expanded", "true");
