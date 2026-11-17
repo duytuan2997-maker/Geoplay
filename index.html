@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Học Địa Lý THPT</title>
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -12,10 +12,15 @@
     <script src="script.js"></script>
     <header class="home-header" id="home">
         <nav class="hero-nav" aria-label="Điều hướng chính">
-            <a class="hero-brand" href="#home" aria-label="Trang chủ">
-                <img class="hero-brand-image" src="images/logo-akari.png?v=2" alt="">
-                <span class="mascot-greeting" role="status" aria-live="polite" hidden>Chào bạn! Cùng khám phá địa lí nhé 🌍</span>
-            </a>
+            <div class="hero-brand-group">
+                <a class="hero-brand" href="#home" aria-label="Trang chủ">
+                    <img class="hero-brand-image" src="images/logo-akari.png?v=2" alt="">
+                    <span class="mascot-greeting" role="status" aria-live="polite" hidden>Chào bạn! Cùng khám phá địa lí nhé 🌍</span>
+                </a>
+                <button id="shop-open" class="hero-shop-button" type="button" aria-label="Mở cửa hàng">
+                    <span aria-hidden="true">🛍️</span><span>Cửa hàng</span>
+                </button>
+            </div>
             <div class="hero-links">
                 <a class="active" href="#home">TRANG CHỦ</a>
                 <a href="#courses">BÀI HỌC</a>
@@ -52,10 +57,6 @@
                     <button id="account-chat-open" class="account-chat-button" type="button" aria-label="Mở kênh chat">
                         <span aria-hidden="true">💬</span>
                         <span>Chat</span>
-                    </button>
-                    <button id="shop-open" class="account-chat-button shop-open" type="button" aria-label="Mở cửa hàng">
-                        <span aria-hidden="true">🛍️</span>
-                        <span>Cửa hàng</span>
                     </button>
                     <input id="account-avatar-input" class="account-avatar-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
                 </div>

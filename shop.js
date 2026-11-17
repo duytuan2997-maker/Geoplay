@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     openButton.addEventListener("click", function () {
-        if (!document.getElementById("account-status").textContent.trim()) return;
         render();
         dialog.showModal();
     });
