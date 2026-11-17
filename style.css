@@ -1139,6 +1139,29 @@ header{
     opacity:.7;
 }
 
+.avatar-frame-gold{box-shadow:0 0 0 4px #ffe08a,0 0 13px 5px rgba(255,190,48,.6)!important;}
+.avatar-frame-ocean{box-shadow:0 0 0 4px #77e6f2,0 0 14px 5px rgba(46,183,220,.58)!important;}
+.avatar-trim-sakura{outline:3px dotted #ffb3cf;outline-offset:4px;}
+
+.shop-open{flex-basis:72px;}
+.shop-dialog{width:min(680px,calc(100% - 28px));max-width:none;max-height:88vh;margin:auto;padding:0;border:1px solid rgba(255,255,255,.65);border-radius:24px;color:#30443a;background:transparent;box-shadow:0 24px 80px rgba(7,29,28,.38);}
+.shop-dialog::backdrop{background:rgba(5,28,27,.66);backdrop-filter:blur(6px);}
+.shop-card{padding:24px;background:linear-gradient(145deg,#fffdf1,#eef8ea);}
+.shop-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;}
+.shop-kicker{margin-bottom:4px;color:#7b956b;font-size:11px;font-weight:900;letter-spacing:.14em;}
+.shop-heading h2{color:#286c4d;font-size:28px;}
+.shop-balance{margin-top:14px;padding:10px 13px;border-radius:12px;color:#72530b;background:#fff2c9;}
+.shop-description{margin:12px 0 18px;color:#627166;font-size:14px;}
+.shop-items{display:grid;gap:10px;max-height:48vh;overflow:auto;}
+.shop-item{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:13px;padding:12px;border:1px solid #dfe9d8;border-radius:16px;background:rgba(255,255,255,.82);}
+.shop-avatar-preview{display:grid;width:48px;height:48px;place-items:center;border-radius:50%;color:#fff;background:linear-gradient(145deg,#39a96b,#167545);font-weight:900;}
+.shop-item-copy h3{color:#315a43;font-size:15px;}
+.shop-item-copy p{margin:3px 0 5px;color:#68786d;font-size:12px;}
+.shop-price{color:#9a6d0a;font-size:12px;font-weight:800;}
+.shop-item button{min-width:78px;padding:8px 10px;border:0;border-radius:10px;color:white;background:#32764f;font-weight:800;cursor:pointer;}
+.shop-item button:disabled{color:#43624a;background:#dcebd8;cursor:default;}
+.shop-message{min-height:20px;margin-top:10px;color:#286c4d;font-size:13px;font-weight:700;}
+
 .account-exp-row{
     display:flex;
     align-items:center;
@@ -2058,6 +2081,7 @@ body{
 }
 
 .chat-message-avatar{
+    position:relative;
     display:grid;
     flex:0 0 36px;
     width:36px;
@@ -2071,6 +2095,8 @@ body{
     font-size:.85rem;
     font-weight:800;
 }
+
+.chat-message-avatar.avatar-trim-sakura{outline-offset:2px;}
 
 .chat-message-avatar img{
     display:block;

@@ -37,6 +37,73 @@ document.addEventListener("DOMContentLoaded", function () {
         return avatar;
     }
 
+    async function getChatAvatar() {
+        const equipped = JSON.parse(localStorage.getItem("geoplay.shop.equipped") || "{}");
+        if (!equipped.frame && !equipped.trim) return chatUser.avatar;
+
+        const canvas = document.createElement("canvas");
+        canvas.width = 256;
+        canvas.height = 256;
+        const context = canvas.getContext("2d");
+        if (!context) return chatUser.avatar;
+        context.save();
+        context.beginPath();
+        context.arc(128, 128, 105, 0, Math.PI * 2);
+        context.clip();
+        if (chatUser.avatar) {
+            const image = new Image();
+            image.src = chatUser.avatar;
+            await new Promise(function (resolve) {
+                image.onload = resolve;
+                image.onerror = resolve;
+            });
+            if (image.naturalWidth) {
+                const cropSize = Math.min(image.naturalWidth, image.naturalHeight);
+                context.drawImage(image,
+                    (image.naturalWidth - cropSize) / 2,
+                    (image.naturalHeight - cropSize) / 2,
+                    cropSize, cropSize, 23, 23, 210, 210);
+            } else {
+                drawInitial();
+            }
+        } else {
+            drawInitial();
+        }
+        context.restore();
+
+        function drawInitial() {
+            context.fillStyle = "#258052";
+            context.fillRect(0, 0, 256, 256);
+            context.fillStyle = "#ffffff";
+            context.font = "bold 112px Segoe UI, sans-serif";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText(chatUser.username.charAt(0).toLocaleUpperCase("vi-VN") || "?", 128, 132);
+        }
+
+        const frameColors = { gold: "#f4c74e", ocean: "#47cde0" };
+        if (frameColors[equipped.frame]) {
+            context.beginPath();
+            context.arc(128, 128, 113, 0, Math.PI * 2);
+            context.strokeStyle = frameColors[equipped.frame];
+            context.lineWidth = 15;
+            context.stroke();
+        }
+        if (equipped.trim === "sakura") {
+            [[128, 13], [243, 128], [128, 243], [13, 128]].forEach(function (point) {
+                context.fillStyle = "#ffb1cd";
+                context.beginPath();
+                context.arc(point[0], point[1], 11, 0, Math.PI * 2);
+                context.fill();
+                context.fillStyle = "#ffe98a";
+                context.beginPath();
+                context.arc(point[0], point[1], 4, 0, Math.PI * 2);
+                context.fill();
+            });
+        }
+        return canvas.toDataURL("image/jpeg", 0.88);
+    }
+
     function appendMessage(message) {
         const item = document.createElement("li");
         item.className = "chat-message";
@@ -117,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: {
                     user_id: chatUser.id,
                     username: chatUser.username,
-                    avatar: chatUser.avatar,
+                    avatar: await getChatAvatar(),
                     content: content
                 }
             });

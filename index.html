@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Học Địa Lý THPT</title>
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -53,6 +53,10 @@
                         <span aria-hidden="true">💬</span>
                         <span>Chat</span>
                     </button>
+                    <button id="shop-open" class="account-chat-button shop-open" type="button" aria-label="Mở cửa hàng">
+                        <span aria-hidden="true">🛍️</span>
+                        <span>Cửa hàng</span>
+                    </button>
                     <input id="account-avatar-input" class="account-avatar-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
                 </div>
                 <p id="account-avatar-message" class="account-avatar-message" role="status" aria-live="polite" hidden></p>
@@ -83,6 +87,19 @@
             <button id="account-submit" class="account-submit" type="submit">Đăng nhập</button>
         </form>
         <button id="account-mode" class="account-mode" type="button">Chưa có tài khoản? Tạo tài khoản</button>
+    </dialog>
+
+    <dialog id="shop-dialog" class="shop-dialog" aria-labelledby="shop-title">
+        <section class="shop-card">
+            <div class="shop-heading">
+                <div><p class="shop-kicker">GEOPLAY COSMETICS</p><h2 id="shop-title">Cửa hàng</h2></div>
+                <button id="shop-close" class="account-close" type="button" aria-label="Đóng cửa hàng">×</button>
+            </div>
+            <p class="shop-balance">🪙 Geo Coin: <strong id="shop-coins">0</strong></p>
+            <p class="shop-description">Trang bị viền hồ sơ và diềm avatar để làm nổi bật tin nhắn của bạn.</p>
+            <div id="shop-items" class="shop-items"></div>
+            <p id="shop-message" class="shop-message" role="status" aria-live="polite"></p>
+        </section>
     </dialog>
 
     <dialog id="chat-dialog" class="chat-dialog" aria-labelledby="chat-room-title">
@@ -344,6 +361,7 @@
     <script src="leaderboard.js"></script>
     <script src="auth.js"></script>
     <script src="chat.js"></script>
+    <script src="shop.js"></script>
     <script src="earth-globe.js"></script>
     </main>
 </body>
