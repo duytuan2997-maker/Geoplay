@@ -82,6 +82,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const frameColors = { gold: "#f4c74e", ocean: "#47cde0" };
+        if (equipped.frame === "sakura-frame") {
+            const frameImage = new Image();
+            frameImage.src = "images/sakura-frame.png";
+            await new Promise(function (resolve) {
+                frameImage.onload = resolve;
+                frameImage.onerror = resolve;
+            });
+            if (frameImage.naturalWidth) context.drawImage(frameImage, 0, 0, 256, 256);
+        }
         if (frameColors[equipped.frame]) {
             context.beginPath();
             context.arc(128, 128, 113, 0, Math.PI * 2);
@@ -101,7 +110,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 context.fill();
             });
         }
-        return canvas.toDataURL("image/jpeg", 0.88);
+        return equipped.frame === "sakura-frame"
+            ? canvas.toDataURL("image/webp", 0.9)
+            : canvas.toDataURL("image/jpeg", 0.88);
     }
 
     function appendMessage(message) {
@@ -111,6 +122,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const avatar = document.createElement("span");
         avatar.className = "chat-message-avatar";
+        if (typeof message.avatar === "string" && message.avatar.startsWith("data:image/webp;")) {
+            avatar.classList.add("chat-message-avatar-sakura");
+        }
         const avatarUrl = getSafeAvatar(message.avatar);
         if (avatarUrl) {
             const image = document.createElement("img");

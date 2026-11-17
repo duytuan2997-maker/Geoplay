@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const catalog = [
         { id: "gold", name: "Viền hoàng kim", type: "frame", price: 120, description: "Viền vàng sáng cho avatar hồ sơ và chat." },
         { id: "sakura", name: "Diềm hoa anh đào", type: "trim", price: 180, description: "Cánh hoa điểm quanh avatar trong khung chat." },
+        { id: "sakura-frame", name: "Khung hoa anh đào", type: "frame", price: 220, description: "Khung cành anh đào lấy từ sơ đồ tư duy, hiện trên hồ sơ và avatar chat." },
         { id: "ocean", name: "Viền đại dương", type: "frame", price: 150, description: "Sắc xanh biển nổi bật quanh avatar." }
     ];
     const ownedKey = "geoplay.shop.owned";
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateProfileAvatar() {
         if (!profileAvatar) return;
-        profileAvatar.classList.remove("avatar-frame-gold", "avatar-frame-ocean", "avatar-trim-sakura");
+        profileAvatar.classList.remove("avatar-frame-gold", "avatar-frame-ocean", "avatar-frame-sakura-frame", "avatar-trim-sakura");
         const equipped = readEquipped();
         if (equipped.frame) profileAvatar.classList.add("avatar-frame-" + equipped.frame);
         if (equipped.trim) profileAvatar.classList.add("avatar-trim-" + equipped.trim);

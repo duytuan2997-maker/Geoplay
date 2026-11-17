@@ -1142,6 +1142,12 @@ header{
 .avatar-frame-gold{box-shadow:0 0 0 4px #ffe08a,0 0 13px 5px rgba(255,190,48,.6)!important;}
 .avatar-frame-ocean{box-shadow:0 0 0 4px #77e6f2,0 0 14px 5px rgba(46,183,220,.58)!important;}
 .avatar-trim-sakura{outline:3px dotted #ffb3cf;outline-offset:4px;}
+.account-avatar.avatar-frame-sakura-frame{overflow:visible;}
+.account-avatar.avatar-frame-sakura-frame>img{border-radius:21px;}
+.account-avatar.avatar-frame-sakura-frame::after{position:absolute;z-index:2;inset:-9px;content:"";pointer-events:none;background:url("images/sakura-frame.png") center / 100% 100% no-repeat;}
+.account-avatar.avatar-frame-sakura-frame .avatar-change-hint{z-index:3;}
+.shop-avatar-preview.avatar-frame-sakura-frame{position:relative;}
+.shop-avatar-preview.avatar-frame-sakura-frame::after{position:absolute;inset:-5px;content:"";pointer-events:none;background:url("images/sakura-frame.png") center / 100% 100% no-repeat;}
 
 .hero-brand-group{display:flex;align-items:center;justify-self:start;gap:8px;}
 .hero-shop-button{display:flex;min-width:64px;min-height:54px;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:5px 8px;border:1px solid rgba(244,239,210,.42);border-radius:13px;color:#fff9e8;background:rgba(255,255,255,.11);font-size:10px;font-weight:800;cursor:pointer;transition:background .15s ease,transform .15s ease;}
@@ -2107,6 +2113,9 @@ body{
     height:100%;
     object-fit:cover;
 }
+
+.chat-message-avatar-sakura{overflow:visible;border:0;border-radius:0;background:transparent;}
+.chat-message-avatar-sakura img{border-radius:0;object-fit:contain;}
 
 .chat-message-body{
     max-width:calc(100% - 45px);
