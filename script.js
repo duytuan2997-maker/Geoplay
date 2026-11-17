@@ -331,18 +331,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const mascot = document.querySelector(".hero-brand");
     const mascotGreeting = document.querySelector(".mascot-greeting");
     let mascotTimer;
+    let mascotSqueezeCount = 0;
     if (mascot && mascotGreeting) {
         mascot.setAttribute("aria-label", "Chạm để trò chuyện với Akari");
         mascot.addEventListener("click", function (event) {
             event.preventDefault();
             mascotGreeting.hidden = false;
-            mascot.classList.remove("is-cheering");
+            mascot.classList.remove("squeeze-horizontal", "squeeze-vertical");
             void mascot.offsetWidth;
-            mascot.classList.add("is-cheering");
+            mascot.classList.add(mascotSqueezeCount % 2 === 0 ? "squeeze-horizontal" : "squeeze-vertical");
+            mascotSqueezeCount += 1;
             window.clearTimeout(mascotTimer);
             mascotTimer = window.setTimeout(function () {
                 mascotGreeting.hidden = true;
-                mascot.classList.remove("is-cheering");
+                mascot.classList.remove("squeeze-horizontal", "squeeze-vertical");
             }, 2600);
         });
     }

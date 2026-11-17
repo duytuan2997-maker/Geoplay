@@ -1505,9 +1505,17 @@ header{
     text-decoration:none;
 }
 
-.hero-brand.is-cheering .hero-brand-image{
+.hero-brand.squeeze-horizontal .hero-brand-image,
+.hero-brand.squeeze-vertical .hero-brand-image{
     transform-origin:50% 50%;
-    animation:mascot-squish 1s ease-in-out;
+}
+
+.hero-brand.squeeze-horizontal .hero-brand-image{
+    animation:mascot-squish-horizontal .85s ease-in-out;
+}
+
+.hero-brand.squeeze-vertical .hero-brand-image{
+    animation:mascot-squish-vertical .85s ease-in-out;
 }
 
 .mascot-greeting{
@@ -1529,9 +1537,14 @@ header{
 
 .mascot-greeting[hidden]{display:none;}
 
-@keyframes mascot-squish{
-    0%,100%{transform:scaleX(1)}
-    22%,78%{transform:scaleX(.28)}
+@keyframes mascot-squish-horizontal{
+    0%,100%{transform:scale(1,1)}
+    35%,70%{transform:scale(.5,1.14)}
+}
+
+@keyframes mascot-squish-vertical{
+    0%,100%{transform:scale(1,1)}
+    35%,70%{transform:scale(1.14,.5)}
 }
 
 .hero-brand-image{
