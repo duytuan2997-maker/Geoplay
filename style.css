@@ -1497,11 +1497,41 @@ header{
 }
 
 .hero-brand{
+    position:relative;
     display:grid;
     width:112px;
     height:106px;
     place-items:center;
     text-decoration:none;
+}
+
+.hero-brand.is-cheering .hero-brand-image{
+    animation:mascot-bounce .55s ease;
+}
+
+.mascot-greeting{
+    position:absolute;
+    z-index:5;
+    top:calc(100% - 8px);
+    left:8px;
+    width:max-content;
+    max-width:min(260px,75vw);
+    padding:10px 13px;
+    border:1px solid rgba(255,255,255,.65);
+    border-radius:14px 14px 14px 4px;
+    color:#234b40;
+    background:#fffdf3;
+    box-shadow:0 8px 22px rgba(18,48,42,.2);
+    font-size:13px;
+    font-weight:700;
+}
+
+.mascot-greeting[hidden]{display:none;}
+
+@keyframes mascot-bounce{
+    0%,100%{transform:translateY(0) rotate(0)}
+    35%{transform:translateY(-12px) rotate(-7deg)}
+    70%{transform:translateY(0) rotate(6deg)}
 }
 
 .hero-brand-image{
@@ -1639,7 +1669,7 @@ header{
     width:min(72vw,560px);
     aspect-ratio:1;
     transform:translate(-50%,-50%);
-    filter:drop-shadow(0 26px 50px rgba(17,63,46,.42));
+    filter:drop-shadow(0 26px 50px rgba(10,31,55,.5));
 }
 
 .earth-canvas,
@@ -1662,12 +1692,28 @@ header{
     cursor:grabbing;
 }
 
+.earth-error{
+    position:absolute;
+    z-index:3;
+    top:50%;
+    left:50%;
+    width:max-content;
+    max-width:80%;
+    padding:10px 14px;
+    transform:translate(-50%,-50%);
+    border-radius:8px;
+    color:#fff;
+    background:rgba(16,43,62,.88);
+    font-size:13px;
+    text-align:center;
+}
+
 .earth-glow{
     z-index:1;
     transform:scale(.92);
-    background:#d5e9a6;
-    filter:blur(46px);
-    opacity:.2;
+    background:#55a9e5;
+    filter:blur(52px);
+    opacity:.26;
 }
 
 .earth-orbit{

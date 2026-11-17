@@ -13,19 +13,10 @@
     textureCanvas.width = textureWidth;
     textureCanvas.height = textureHeight;
     const textureContext = textureCanvas.getContext("2d", { willReadFrequently: true });
-
-    const continents = [
-        [[-168, 70], [-150, 60], [-135, 57], [-130, 49], [-123, 40], [-117, 32], [-108, 25], [-98, 18], [-88, 16], [-82, 24], [-78, 31], [-73, 42], [-61, 48], [-67, 55], [-82, 60], [-95, 68], [-115, 72], [-135, 70], [-151, 72]],
-        [[-81, 12], [-70, 10], [-61, 3], [-52, -5], [-48, -15], [-43, -23], [-50, -32], [-55, -40], [-66, -55], [-73, -47], [-77, -32], [-80, -13]],
-        [[-53, 60], [-45, 59], [-38, 67], [-42, 78], [-53, 83], [-61, 78], [-59, 68]],
-        [[-11, 36], [-8, 44], [-10, 52], [-5, 58], [3, 60], [10, 55], [18, 58], [27, 70], [42, 68], [54, 72], [70, 68], [82, 72], [99, 70], [112, 62], [130, 54], [143, 49], [151, 59], [166, 60], [178, 52], [170, 43], [151, 40], [140, 36], [130, 32], [121, 24], [112, 22], [106, 10], [98, 7], [91, 20], [81, 7], [73, 9], [67, 24], [57, 25], [50, 30], [43, 36], [34, 34], [28, 40], [21, 37], [14, 45], [5, 44], [-1, 49], [-8, 43]],
-        [[-17, 35], [-5, 37], [10, 34], [23, 31], [33, 22], [42, 11], [50, 12], [51, 2], [43, -12], [39, -22], [31, -34], [18, -35], [10, -27], [4, -18], [-1, -6], [-8, 5], [-14, 17]],
-        [[112, -11], [130, -12], [143, -17], [153, -27], [147, -39], [134, -36], [120, -32], [114, -22]],
-        [[45, -13], [50, -16], [49, -25], [45, -24]],
-        [[129, 31], [137, 34], [142, 41], [145, 44], [140, 37]],
-        [[95, 5], [105, 0], [115, -4], [124, -9], [130, -5], [122, 2], [114, 1], [108, 7], [100, 8]],
-        [[47, -13], [51, -16], [50, -25], [45, -24]]
-    ];
+    const landMaskCanvas = document.createElement("canvas");
+    landMaskCanvas.width = textureWidth;
+    landMaskCanvas.height = textureHeight;
+    const landMaskContext = landMaskCanvas.getContext("2d", { willReadFrequently: true });
 
     const pi = Math.PI;
     let texturePixels;
@@ -48,39 +39,153 @@
         ];
     }
 
-    function drawTexture() {
+    function createNoiseGrid(cellSize, seed) {
+        const columns = Math.ceil(textureWidth / cellSize) + 1;
+        const rows = Math.ceil(textureHeight / cellSize) + 1;
+        const values = new Float32Array(columns * rows);
+        let state = seed;
+        for (let i = 0; i < values.length; i++) {
+            state = (state * 1664525 + 1013904223) >>> 0;
+            values[i] = state / 4294967296;
+        }
+        return { columns, rows, cellSize, values };
+    }
+
+    function sampleNoise(grid, x, y) {
+        const gridX = x / grid.cellSize;
+        const gridY = y / grid.cellSize;
+        const left = Math.floor(gridX);
+        const top = Math.floor(gridY);
+        const fractionX = gridX - left;
+        const fractionY = gridY - top;
+        const smoothX = fractionX * fractionX * (3 - 2 * fractionX);
+        const smoothY = fractionY * fractionY * (3 - 2 * fractionY);
+        const topLeft = grid.values[top * grid.columns + left];
+        const topRight = grid.values[top * grid.columns + left + 1];
+        const bottomLeft = grid.values[(top + 1) * grid.columns + left];
+        const bottomRight = grid.values[(top + 1) * grid.columns + left + 1];
+        const topValue = topLeft + (topRight - topLeft) * smoothX;
+        const bottomValue = bottomLeft + (bottomRight - bottomLeft) * smoothX;
+        return topValue + (bottomValue - topValue) * smoothY;
+    }
+
+    function drawTexture(landFeatures) {
         const ocean = textureContext.createLinearGradient(0, 0, 0, textureHeight);
-        ocean.addColorStop(0, "#6dc8be");
-        ocean.addColorStop(0.5, "#188f7d");
-        ocean.addColorStop(1, "#164d43");
+        ocean.addColorStop(0, "#123a61");
+        ocean.addColorStop(0.5, "#07517b");
+        ocean.addColorStop(1, "#062744");
         textureContext.fillStyle = ocean;
         textureContext.fillRect(0, 0, textureWidth, textureHeight);
+        landMaskContext.fillStyle = "#000";
+        landMaskContext.fillRect(0, 0, textureWidth, textureHeight);
 
-        continents.forEach(function (points) {
-            textureContext.beginPath();
-            points.forEach(function (point, index) {
-                const mapped = mapPoint(point[0], point[1]);
-                if (index === 0) textureContext.moveTo(mapped[0], mapped[1]);
-                else textureContext.lineTo(mapped[0], mapped[1]);
-            });
-            textureContext.closePath();
-            textureContext.fillStyle = "#4d925b";
-            textureContext.fill();
-            textureContext.lineWidth = 1.6;
-            textureContext.strokeStyle = "rgba(224, 225, 167, 0.82)";
-            textureContext.stroke();
-        });
-
-        [[-27, 64], [-18, 66], [138, 36], [121, 14], [-4, 54], [48, -19], [146, -6]]
-            .forEach(function (point) {
-                const mapped = mapPoint(point[0], point[1]);
+        landFeatures.forEach(function (feature) {
+            const polygons = feature.geometry.type === "Polygon"
+                ? [feature.geometry.coordinates]
+                : feature.geometry.type === "MultiPolygon"
+                    ? feature.geometry.coordinates
+                    : [];
+            polygons.forEach(function (rings) {
                 textureContext.beginPath();
-                textureContext.arc(mapped[0], mapped[1], 4, 0, pi * 2);
-                textureContext.fillStyle = "#78b66b";
-                textureContext.fill();
+                landMaskContext.beginPath();
+                rings.forEach(function (ring) {
+                    ring.forEach(function (point, index) {
+                        const mapped = mapPoint(point[0], point[1]);
+                        if (index === 0) {
+                            textureContext.moveTo(mapped[0], mapped[1]);
+                            landMaskContext.moveTo(mapped[0], mapped[1]);
+                        } else {
+                            textureContext.lineTo(mapped[0], mapped[1]);
+                            landMaskContext.lineTo(mapped[0], mapped[1]);
+                        }
+                    });
+                    textureContext.closePath();
+                    landMaskContext.closePath();
+                });
+                textureContext.fillStyle = "#4d925b";
+                textureContext.fill("evenodd");
+                landMaskContext.fillStyle = "#fff";
+                landMaskContext.fill("evenodd");
+            });
             });
 
-        texturePixels = textureContext.getImageData(0, 0, textureWidth, textureHeight).data;
+        addSurfaceDetail();
+    }
+
+    function addSurfaceDetail() {
+        const image = textureContext.getImageData(0, 0, textureWidth, textureHeight);
+        const pixels = image.data;
+        const landMask = landMaskContext.getImageData(0, 0, textureWidth, textureHeight).data;
+        const broadNoise = createNoiseGrid(96, 1847);
+        const mediumNoise = createNoiseGrid(28, 4171);
+        const fineNoise = createNoiseGrid(8, 9277);
+        const coastOffsets = [
+            -textureWidth - 1, -textureWidth, -textureWidth + 1,
+            -1, 1,
+            textureWidth - 1, textureWidth, textureWidth + 1
+        ];
+
+        for (let y = 0; y < textureHeight; y++) {
+            const latitude = 90 - y * 180 / textureHeight;
+            const latitudeRatio = Math.abs(latitude) / 90;
+            for (let x = 0; x < textureWidth; x++) {
+                const index = y * textureWidth + x;
+                const pixel = index * 4;
+                const broad = sampleNoise(broadNoise, x, y);
+                const medium = sampleNoise(mediumNoise, x, y);
+                const fine = sampleNoise(fineNoise, x, y);
+                const terrain = broad * 0.48 + medium * 0.34 + fine * 0.18;
+                const land = landMask[pixel] > 128;
+                let red;
+                let green;
+                let blue;
+
+                if (land) {
+                    const desertBelt = (latitude > 12 && latitude < 38) || (latitude < -8 && latitude > -34);
+                    if (latitudeRatio > 0.78 || terrain > 0.83) {
+                        const snow = Math.max(0, (latitudeRatio - 0.72) * 2.4) + Math.max(0, terrain - 0.78) * 1.8;
+                        red = 91 + snow * 137;
+                        green = 119 + snow * 126;
+                        blue = 78 + snow * 145;
+                    } else if (desertBelt && terrain > 0.39) {
+                        const relief = (terrain - 0.39) * 74;
+                        red = 132 + relief;
+                        green = 111 + relief * 0.78;
+                        blue = 72 + relief * 0.48;
+                    } else {
+                        const relief = (terrain - 0.5) * 96;
+                        const tropical = latitudeRatio < 0.34;
+                        red = (tropical ? 43 : 67) + relief;
+                        green = (tropical ? 91 : 108) + relief;
+                        blue = (tropical ? 53 : 78) + relief * 0.58;
+                    }
+                } else {
+                    const waterDepth = broad * 0.58 + medium * 0.42;
+                    let nearCoast = false;
+                    for (let offset = 0; offset < coastOffsets.length; offset++) {
+                        if (landMask[(index + coastOffsets[offset]) * 4] > 128) {
+                            nearCoast = true;
+                            break;
+                        }
+                    }
+                    if (nearCoast) {
+                        red = 8 + waterDepth * 16;
+                        green = 83 + waterDepth * 42;
+                        blue = 119 + waterDepth * 53;
+                    } else {
+                        red = 4 + waterDepth * 9;
+                        green = 28 + waterDepth * 38;
+                        blue = 59 + waterDepth * 53;
+                    }
+                }
+
+                pixels[pixel] = red;
+                pixels[pixel + 1] = green;
+                pixels[pixel + 2] = blue;
+            }
+        }
+        textureContext.putImageData(image, 0, 0);
+        texturePixels = pixels;
     }
 
     function prepareCanvas() {
@@ -119,7 +224,7 @@
     }
 
     function renderGlobe() {
-        if (!imageData || canvas.width === 0) return;
+        if (!imageData || !texturePixels || canvas.width === 0) return;
 
         const cosRotation = Math.cos(rotation);
         const sinRotation = Math.sin(rotation);
@@ -142,9 +247,9 @@
             const textureY = Math.max(0, Math.min(textureHeight - 1, Math.floor((0.5 - latitude / pi) * textureHeight)));
             const sourceIndex = (textureY * textureWidth + textureX) * 4;
             const targetIndex = pixelIndex[i];
-            const light = Math.max(0, x * -0.5 + y * -0.55 + z * 0.68);
-            const shade = 0.22 + light * 0.9;
-            const edgeGlow = Math.max(0, 1 - z) * 0.16;
+            const light = Math.max(0, x * -0.48 + y * -0.42 + z * 0.77);
+            const shade = 0.2 + light * 0.94;
+            const edgeGlow = Math.pow(Math.max(0, 1 - z), 2.2) * 0.36;
 
             output[targetIndex * 4] = Math.min(255, texturePixels[sourceIndex] * shade + 40 * edgeGlow);
             output[targetIndex * 4 + 1] = Math.min(255, texturePixels[sourceIndex + 1] * shade + 125 * edgeGlow);
@@ -190,7 +295,28 @@
         renderGlobe();
     });
 
-    drawTexture();
-    prepareCanvas();
-    window.requestAnimationFrame(animate);
+    // Natural Earth 1:110m land outlines are public-domain data.
+    fetch("earth-land.json")
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error(`Không tải được đường viền lục địa (HTTP ${response.status}).`);
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            if (!Array.isArray(data.features) || data.features.length === 0) {
+                throw new Error("Dữ liệu đường viền lục địa không hợp lệ.");
+            }
+            drawTexture(data.features);
+            prepareCanvas();
+            window.requestAnimationFrame(animate);
+        })
+        .catch(function (error) {
+            console.error("Không thể hiển thị Trái Đất:", error);
+            const message = document.createElement("p");
+            message.className = "earth-error";
+            message.setAttribute("role", "status");
+            message.textContent = "Không tải được bản đồ Trái Đất.";
+            canvas.parentElement.append(message);
+        });
 }());

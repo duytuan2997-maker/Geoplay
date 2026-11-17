@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Đoán tên tỉnh, thành phố Việt Nam được tô đỏ trên bản đồ trong 20 giây.">
+    <title>Đoán Tỉnh Thành qua bản đồ</title>
+    <link rel="stylesheet" href="doan-tinh-thanh.css">
+    <script src="doan-tinh-thanh.js" defer></script>
+</head>
+<body>
+    <header class="quiz-header">
+        <a href="trochoi.html" class="back-link">← Danh sách trò chơi</a>
+        <p class="eyebrow">THỬ THÁCH ĐỊA LÍ</p>
+        <h1>Đoán tỉnh thành</h1>
+        <p>Nhìn tỉnh/thành được tô đỏ và nhập tên trong 20 giây!</p>
+    </header>
+
+    <main class="quiz-main">
+        <section class="game-card" aria-labelledby="game-title">
+            <div class="game-heading">
+                <div>
+                    <p class="eyebrow">BẢN ĐỒ VIỆT NAM</p>
+                    <h2 id="game-title">Tỉnh/thành nào được tô đỏ?</h2>
+                </div>
+                <a class="back-link dark-link" href="trochoi.html">← Trò chơi</a>
+            </div>
+
+            <div class="game-status">
+                <div class="timer" aria-label="Thời gian còn lại">
+                    <span aria-hidden="true">⏱</span>
+                    <strong id="timer" aria-live="off">20</strong>
+                    <span>giây</span>
+                </div>
+                <p id="score" aria-live="polite">Điểm: 0</p>
+            </div>
+
+            <div class="timer-track" role="progressbar" aria-label="Thời gian" aria-valuemin="0" aria-valuemax="20" aria-valuenow="20">
+                <span id="timer-fill"></span>
+            </div>
+
+            <div class="game-layout">
+                <div class="map-frame">
+                    <p class="map-hint">Tỉnh/thành màu đỏ là đáp án cần đoán</p>
+                    <div id="map" class="map" aria-live="polite">
+                        <p id="map-message" class="map-message" role="status">Đang tải bản đồ...</p>
+                    </div>
+                </div>
+
+                <div class="answer-panel">
+                    <p id="game-message" class="game-message" role="status" aria-live="polite">Bấm “Bắt đầu” để chơi nhé!</p>
+                    <form id="guess-form">
+                        <label for="guess-input">Tên tỉnh / thành phố</label>
+                        <input id="guess-input" name="guess" type="text" autocomplete="off" placeholder="Ví dụ: Đà Nẵng" list="province-options" disabled required>
+                        <datalist id="province-options"></datalist>
+                        <button id="guess-button" class="primary-button" type="submit" disabled>Trả lời</button>
+                    </form>
+                    <div class="game-actions">
+                        <button id="start-button" class="primary-button" type="button" disabled>Bắt đầu</button>
+                        <button id="restart-button" class="secondary-button" type="button" hidden>Chơi lại</button>
+                    </div>
+                    <p class="map-attribution">Ranh giới bản đồ: geoBoundaries (bản đồ tỉnh/thành trước đợt sắp xếp năm 2025, giấy phép Public Domain).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
