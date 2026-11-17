@@ -1506,8 +1506,8 @@ header{
 }
 
 .hero-brand.is-cheering .hero-brand-image{
-    transform-origin:50% 85%;
-    animation:mascot-squish .65s ease-in-out;
+    transform-origin:50% 50%;
+    animation:mascot-squish 1s ease-in-out;
 }
 
 .mascot-greeting{
@@ -1531,7 +1531,7 @@ header{
 
 @keyframes mascot-squish{
     0%,100%{transform:scaleX(1)}
-    35%,65%{transform:scaleX(.55)}
+    22%,78%{transform:scaleX(.28)}
 }
 
 .hero-brand-image{
