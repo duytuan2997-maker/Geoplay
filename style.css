@@ -1530,8 +1530,8 @@ header{
 .mascot-greeting[hidden]{display:none;}
 
 @keyframes mascot-squish{
-    0%,100%{transform:scale(1,1)}
-    35%,65%{transform:scale(1.2,.58)}
+    0%,100%{transform:scaleX(1)}
+    35%,65%{transform:scaleX(.55)}
 }
 
 .hero-brand-image{
