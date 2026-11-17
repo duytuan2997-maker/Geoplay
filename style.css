@@ -1506,7 +1506,8 @@ header{
 }
 
 .hero-brand.is-cheering .hero-brand-image{
-    animation:mascot-bounce .55s ease;
+    transform-origin:50% 85%;
+    animation:mascot-squish .65s ease-in-out;
 }
 
 .mascot-greeting{
@@ -1528,12 +1529,9 @@ header{
 
 .mascot-greeting[hidden]{display:none;}
 
-@keyframes mascot-bounce{
-    0%,100%{transform:translateY(0) scale(1,1) rotate(0)}
-    22%{transform:translateY(2px) scale(1.14,.72) rotate(0)}
-    42%{transform:translateY(-14px) scale(.86,1.18) rotate(-7deg)}
-    65%{transform:translateY(0) scale(1.1,.88) rotate(5deg)}
-    82%{transform:translateY(-4px) scale(.96,1.06) rotate(-2deg)}
+@keyframes mascot-squish{
+    0%,100%{transform:scale(1,1)}
+    35%,65%{transform:scale(1.2,.58)}
 }
 
 .hero-brand-image{
